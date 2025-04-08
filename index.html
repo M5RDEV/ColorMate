@@ -1,0 +1,2795 @@
+<!DOCTYPE html>
+<!-- saved from url=(0094)https://page.genspark.site/page/toolu_015VdkKjqYbFSdfzLvJ55KwB/colormate_library_enhanced.html -->
+<html lang="ar" dir="rtl" class="" data--h-bstatus="0OBSERVED"><head data--h-bstatus="0OBSERVED"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" data--h-bstatus="0OBSERVED">
+  <title data--h-bstatus="0OBSERVED">ColorMate - مكتبة ألوان ويب ذكية</title>
+  <link href="./ColorMate - مكتبة ألوان ويب ذكية_files/tailwind.min.css" rel="stylesheet" data--h-bstatus="0OBSERVED">
+  <link rel="stylesheet" href="./ColorMate - مكتبة ألوان ويب ذكية_files/all.min.css" data--h-bstatus="0OBSERVED">
+  <style data--h-bstatus="0OBSERVED">
+    * {
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .color-card {
+      transition: transform 0.2s;
+    }
+    .color-card:hover {
+      transform: translateY(-5px);
+    }
+    .copied-alert {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 50;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gradient-preview {
+      height: 100px;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .color-swatch {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .tab {
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+    }
+    .tab.active {
+      border-color: #3B82F6;
+    }
+    .contrast-box {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    input[type="color"] {
+      border: none;
+      width: 50px;
+      height: 50px;
+      background: none;
+      cursor: pointer;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+    .badge {
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .badge-success {
+      background-color: #10B981;
+      color: white;
+    }
+    .badge-warning {
+      background-color: #F59E0B;
+      color: white;
+    }
+    .badge-danger {
+      background-color: #EF4444;
+      color: white;
+    }
+    .theme-toggle {
+      width: 60px;
+      height: 30px;
+      background-color: #e2e8f0;
+      border-radius: 15px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .dark .theme-toggle {
+      background-color: #4B5563;
+    }
+    .theme-toggle-circle {
+      width: 24px;
+      height: 24px;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FCD34D;
+    }
+    .dark .theme-toggle-circle {
+      right: 33px;
+      background-color: #1F2937;
+      color: #F9FAFB;
+    }
+    .gradient-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+    .gradient-item:hover {
+      transform: translateY(-5px);
+    }
+    .gradient-actions {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px;
+      display: flex;
+      justify-content: space-between;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .gradient-item:hover .gradient-actions {
+      opacity: 1;
+    }
+    .dark .color-tooltip {
+      background-color: #1F2937;
+      color: white;
+    }
+    .color-tooltip {
+      position: absolute;
+      padding: 5px 10px;
+      background-color: white;
+      border-radius: 4px;
+      font-size: 12px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .color-picker-section {
+      background-color: #f3f4f6;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .dark .color-picker-section {
+      background-color: #374151;
+    }
+    .multi-color-gradient {
+      position: relative;
+      height: 100px;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .gradient-stop {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      bottom: -10px;
+      border: 2px solid white;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      z-index: 10;
+    }
+    .gradient-slider {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  </style>
+<style id="hb-stylesheet" data--h-bstatus="0OBSERVED">
+    img.hb-blur {
+      filter: blur(25px) grayscale(100%) !important;
+      transition: filter 0.1s ease !important;
+      opacity: unset !important;
+    }
+  
+	.hb-blur-temp { 
+		animation: hb-blur-temp 20000ms ease-in-out forwards !important;
+	}
+	.hb-hide-temp { 
+		animation: hb-hide-temp 6000ms ease-in-out forwards !important;
+	}
+
+	#hb-in-canvas {
+		display: none !important;
+		visibility: hidden !important;
+	}
+
+	@keyframes hb-hide-temp {
+        0% { visibility: hidden;}
+		95% { visibility: hidden; }
+		100% { visibility: visible;}
+	}
+
+	@keyframes hb-blur-temp {
+        0% { visibility: hidden;}
+		28% { visibility: hidden; }
+		30% { visibility: visible; filter: blur(25px) grayscale(100%); }
+        95% { filter: blur(25px) grayscale(100%); }
+        100% { visibility:visible; filter: unset}
+	}
+
+    .hb-wrapper {
+        position: absolute;
+        pointer-events: none;
+    }
+
+	.hb-rect { 
+		will-change: width, height, top, left, right, bottom, transform, opacity;
+		transition: all 0.3s ease;
+		position: absolute;
+		border-radius: 5px;
+		background: rgba(255, 255, 255, 0.2);
+		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+		backdrop-filter: blur(25px) grayscale(100%);
+        -webkit-backdrop-filter: blur(25px) grayscale(100%);
+        pointer-events: none;
+	}
+  </style><style data--h-bstatus="0OBSERVED">undefined</style></head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200" cz-shortcut-listen="true" data--h-bstatus="0OBSERVED">
+  <div class="copied-alert bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg" data--h-bstatus="0OBSERVED">
+    تم النسخ!
+  </div>
+
+  <header class="bg-white dark:bg-gray-800 shadow-md" data--h-bstatus="0OBSERVED">
+    <div class="container mx-auto px-4 py-6" data--h-bstatus="0OBSERVED">
+      <div class="flex flex-wrap items-center justify-between" data--h-bstatus="0OBSERVED">
+        <div class="flex items-center" data--h-bstatus="0OBSERVED">
+          <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg mr-3" data--h-bstatus="0OBSERVED"></div>
+          <h1 class="text-2xl font-bold" data--h-bstatus="0OBSERVED">ColorMate</h1>
+          <span class="text-sm text-gray-500 dark:text-gray-400 mr-2" data--h-bstatus="0OBSERVED">مكتبة ألوان ويب ذكية</span>
+        </div>
+        <div data--h-bstatus="0OBSERVED">
+          <div id="darkModeToggle" class="theme-toggle" data--h-bstatus="0OBSERVED">
+            <div class="theme-toggle-circle" data--h-bstatus="0OBSERVED">
+              <i class="fas fa-sun dark:hidden" data--h-bstatus="0OBSERVED"></i>
+              <i class="fas fa-moon hidden dark:block" data--h-bstatus="0OBSERVED"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <nav class="mt-6" data--h-bstatus="0OBSERVED">
+        <ul class="flex flex-wrap border-b border-gray-200 dark:border-gray-700" data--h-bstatus="0OBSERVED">
+          <li class="mr-2" data--h-bstatus="0OBSERVED">
+            <a href="https://page.genspark.site/page/toolu_015VdkKjqYbFSdfzLvJ55KwB/colormate_library_enhanced.html#palettes" class="tab inline-block py-2 px-4 active text-blue-600 dark:text-blue-500" data-tab="palettes" data--h-bstatus="0OBSERVED">
+              مجموعات الألوان
+            </a>
+          </li>
+          <li class="mr-2" data--h-bstatus="0OBSERVED">
+            <a href="https://page.genspark.site/page/toolu_015VdkKjqYbFSdfzLvJ55KwB/colormate_library_enhanced.html#gradients" class="tab inline-block py-2 px-4 text-gray-600 dark:text-gray-400" data-tab="gradients" data--h-bstatus="0OBSERVED">
+              التدرجات اللونية
+            </a>
+          </li>
+          <li class="mr-2" data--h-bstatus="0OBSERVED">
+            <a href="https://page.genspark.site/page/toolu_015VdkKjqYbFSdfzLvJ55KwB/colormate_library_enhanced.html#contrast" class="tab inline-block py-2 px-4 text-gray-600 dark:text-gray-400" data-tab="contrast" data--h-bstatus="0OBSERVED">
+              فاحص التباين
+            </a>
+          </li>
+          <li class="mr-2" data--h-bstatus="0OBSERVED">
+            <a href="https://page.genspark.site/page/toolu_015VdkKjqYbFSdfzLvJ55KwB/colormate_library_enhanced.html#converter" class="tab inline-block py-2 px-4 text-gray-600 dark:text-gray-400" data-tab="converter" data--h-bstatus="0OBSERVED">
+              محول الألوان
+            </a>
+          </li>
+          <li class="mr-2" data--h-bstatus="0OBSERVED">
+            <a href="https://page.genspark.site/page/toolu_015VdkKjqYbFSdfzLvJ55KwB/colormate_library_enhanced.html#favorites" class="tab inline-block py-2 px-4 text-gray-600 dark:text-gray-400" data-tab="favorites" data--h-bstatus="0OBSERVED">
+              المفضلة
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8" data--h-bstatus="0OBSERVED">
+    <!-- Color Palettes -->
+    <section id="palettes" class="tab-content block" data--h-bstatus="0OBSERVED">
+      <h2 class="text-2xl font-bold mb-6" data--h-bstatus="0OBSERVED">مجموعات الألوان المتناسقة</h2>
+      
+      <div class="mb-8" data--h-bstatus="0OBSERVED">
+        <h3 class="text-xl font-bold mb-4" data--h-bstatus="0OBSERVED">اختر نمط اللون</h3>
+        <div class="flex flex-wrap gap-2 mb-6" data--h-bstatus="0OBSERVED">
+          <button class="palette-type hover:bg-blue-600 text-white py-2 px-4 rounded-lg active bg-gray-500" data-type="modern" data--h-bstatus="0OBSERVED">عصري</button>
+          <button class="palette-type hover:bg-gray-600 text-white py-2 px-4 rounded-lg bg-gray-500" data-type="pastel" data--h-bstatus="0OBSERVED">باستيل</button>
+          <button class="palette-type hover:bg-gray-600 text-white py-2 px-4 rounded-lg bg-gray-500" data-type="neon" data--h-bstatus="0OBSERVED">نيون</button>
+          <button class="palette-type hover:bg-gray-600 text-white py-2 px-4 rounded-lg bg-gray-500" data-type="vintage" data--h-bstatus="0OBSERVED">فينتاج</button>
+          <button class="palette-type hover:bg-gray-600 text-white py-2 px-4 rounded-lg bg-gray-500" data-type="nature" data--h-bstatus="0OBSERVED">طبيعة</button>
+          <button class="palette-type hover:bg-gray-600 text-white py-2 px-4 rounded-lg bg-gray-500" data-type="flat" data--h-bstatus="0OBSERVED">مسطح</button>
+          <button class="palette-type hover:bg-gray-600 text-white py-2 px-4 rounded-lg bg-blue-500" data-type="material" data--h-bstatus="0OBSERVED">ماتريال</button>
+        </div>
+      </div>
+      
+      <div id="palettesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data--h-bstatus="0OBSERVED"><div class="color-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="flex flex-col h-full" data--h-bstatus="0OBSERVED">
+            <div class="flex" style="height: 80px;" data--h-bstatus="0OBSERVED">
+              
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #F44336" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#F44336" data--h-bstatus="0OBSERVED">
+                  #F44336
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #EF5350" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#EF5350" data--h-bstatus="0OBSERVED">
+                  #EF5350
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #E57373" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#E57373" data--h-bstatus="0OBSERVED">
+                  #E57373
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #EF9A9A" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#EF9A9A" data--h-bstatus="0OBSERVED">
+                  #EF9A9A
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #FFCDD2" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#FFCDD2" data--h-bstatus="0OBSERVED">
+                  #FFCDD2
+                </button>
+              </div>
+            </div>
+          
+            </div>
+            <div class="p-4 flex justify-between items-center" data--h-bstatus="0OBSERVED">
+              <h3 class="font-semibold" data--h-bstatus="0OBSERVED">أحمر ماتريال</h3>
+              <button class="save-palette bg-green-500 hover:bg-green-600 text-white text-sm py-1 px-3 rounded-lg" data-palette="{&quot;name&quot;:&quot;أحمر ماتريال&quot;,&quot;colors&quot;:[&quot;#F44336&quot;,&quot;#EF5350&quot;,&quot;#E57373&quot;,&quot;#EF9A9A&quot;,&quot;#FFCDD2&quot;]}" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div>
+        </div><div class="color-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="flex flex-col h-full" data--h-bstatus="0OBSERVED">
+            <div class="flex" style="height: 80px;" data--h-bstatus="0OBSERVED">
+              
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #2196F3" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#2196F3" data--h-bstatus="0OBSERVED">
+                  #2196F3
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #42A5F5" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#42A5F5" data--h-bstatus="0OBSERVED">
+                  #42A5F5
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #64B5F6" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#64B5F6" data--h-bstatus="0OBSERVED">
+                  #64B5F6
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #90CAF9" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#90CAF9" data--h-bstatus="0OBSERVED">
+                  #90CAF9
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #BBDEFB" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#BBDEFB" data--h-bstatus="0OBSERVED">
+                  #BBDEFB
+                </button>
+              </div>
+            </div>
+          
+            </div>
+            <div class="p-4 flex justify-between items-center" data--h-bstatus="0OBSERVED">
+              <h3 class="font-semibold" data--h-bstatus="0OBSERVED">أزرق ماتريال</h3>
+              <button class="save-palette bg-green-500 hover:bg-green-600 text-white text-sm py-1 px-3 rounded-lg" data-palette="{&quot;name&quot;:&quot;أزرق ماتريال&quot;,&quot;colors&quot;:[&quot;#2196F3&quot;,&quot;#42A5F5&quot;,&quot;#64B5F6&quot;,&quot;#90CAF9&quot;,&quot;#BBDEFB&quot;]}" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div>
+        </div><div class="color-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="flex flex-col h-full" data--h-bstatus="0OBSERVED">
+            <div class="flex" style="height: 80px;" data--h-bstatus="0OBSERVED">
+              
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #4CAF50" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#4CAF50" data--h-bstatus="0OBSERVED">
+                  #4CAF50
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #66BB6A" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#66BB6A" data--h-bstatus="0OBSERVED">
+                  #66BB6A
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #81C784" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#81C784" data--h-bstatus="0OBSERVED">
+                  #81C784
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #A5D6A7" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#A5D6A7" data--h-bstatus="0OBSERVED">
+                  #A5D6A7
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #C8E6C9" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#C8E6C9" data--h-bstatus="0OBSERVED">
+                  #C8E6C9
+                </button>
+              </div>
+            </div>
+          
+            </div>
+            <div class="p-4 flex justify-between items-center" data--h-bstatus="0OBSERVED">
+              <h3 class="font-semibold" data--h-bstatus="0OBSERVED">أخضر ماتريال</h3>
+              <button class="save-palette bg-green-500 hover:bg-green-600 text-white text-sm py-1 px-3 rounded-lg" data-palette="{&quot;name&quot;:&quot;أخضر ماتريال&quot;,&quot;colors&quot;:[&quot;#4CAF50&quot;,&quot;#66BB6A&quot;,&quot;#81C784&quot;,&quot;#A5D6A7&quot;,&quot;#C8E6C9&quot;]}" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div>
+        </div><div class="color-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="flex flex-col h-full" data--h-bstatus="0OBSERVED">
+            <div class="flex" style="height: 80px;" data--h-bstatus="0OBSERVED">
+              
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #FF9800" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#FF9800" data--h-bstatus="0OBSERVED">
+                  #FF9800
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #FFA726" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#FFA726" data--h-bstatus="0OBSERVED">
+                  #FFA726
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #FFB74D" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#FFB74D" data--h-bstatus="0OBSERVED">
+                  #FFB74D
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #FFCC80" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#FFCC80" data--h-bstatus="0OBSERVED">
+                  #FFCC80
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #FFE0B2" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#FFE0B2" data--h-bstatus="0OBSERVED">
+                  #FFE0B2
+                </button>
+              </div>
+            </div>
+          
+            </div>
+            <div class="p-4 flex justify-between items-center" data--h-bstatus="0OBSERVED">
+              <h3 class="font-semibold" data--h-bstatus="0OBSERVED">برتقالي ماتريال</h3>
+              <button class="save-palette bg-green-500 hover:bg-green-600 text-white text-sm py-1 px-3 rounded-lg" data-palette="{&quot;name&quot;:&quot;برتقالي ماتريال&quot;,&quot;colors&quot;:[&quot;#FF9800&quot;,&quot;#FFA726&quot;,&quot;#FFB74D&quot;,&quot;#FFCC80&quot;,&quot;#FFE0B2&quot;]}" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div>
+        </div><div class="color-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="flex flex-col h-full" data--h-bstatus="0OBSERVED">
+            <div class="flex" style="height: 80px;" data--h-bstatus="0OBSERVED">
+              
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #9C27B0" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#9C27B0" data--h-bstatus="0OBSERVED">
+                  #9C27B0
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #AB47BC" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#AB47BC" data--h-bstatus="0OBSERVED">
+                  #AB47BC
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #BA68C8" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#BA68C8" data--h-bstatus="0OBSERVED">
+                  #BA68C8
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #CE93D8" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#CE93D8" data--h-bstatus="0OBSERVED">
+                  #CE93D8
+                </button>
+              </div>
+            </div>
+          
+            <div class="relative" style="flex: 1; min-height: 80px;" data--h-bstatus="0OBSERVED">
+              <div class="absolute inset-0" style="background-color: #E1BEE7" data--h-bstatus="0OBSERVED"></div>
+              <div class="absolute bottom-0 right-0 m-2" data--h-bstatus="0OBSERVED">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="#E1BEE7" data--h-bstatus="0OBSERVED">
+                  #E1BEE7
+                </button>
+              </div>
+            </div>
+          
+            </div>
+            <div class="p-4 flex justify-between items-center" data--h-bstatus="0OBSERVED">
+              <h3 class="font-semibold" data--h-bstatus="0OBSERVED">بنفسجي ماتريال</h3>
+              <button class="save-palette bg-green-500 hover:bg-green-600 text-white text-sm py-1 px-3 rounded-lg" data-palette="{&quot;name&quot;:&quot;بنفسجي ماتريال&quot;,&quot;colors&quot;:[&quot;#9C27B0&quot;,&quot;#AB47BC&quot;,&quot;#BA68C8&quot;,&quot;#CE93D8&quot;,&quot;#E1BEE7&quot;]}" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div>
+        </div></div>
+    </section>
+
+    <!-- Gradients -->
+    <section id="gradients" class="tab-content hidden" data--h-bstatus="0OBSERVED">
+      <h2 class="text-2xl font-bold mb-6" data--h-bstatus="0OBSERVED">مولد التدرجات اللونية</h2>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-8" data--h-bstatus="0OBSERVED">
+        <div class="mb-4" data--h-bstatus="0OBSERVED">
+          <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+            <h3 class="text-lg font-semibold" data--h-bstatus="0OBSERVED">معاينة التدرج</h3>
+            <div class="flex space-x-2 space-x-reverse" data--h-bstatus="0OBSERVED">
+              <button id="addGradientColor" class="bg-blue-500 hover:bg-blue-600 text-white text-sm py-1 px-3 rounded-lg" data--h-bstatus="0OBSERVED">
+                إضافة لون +
+              </button>
+              <select id="gradientType" class="text-sm p-1 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+                <option value="linear" data--h-bstatus="0OBSERVED">خطي</option>
+                <option value="radial" data--h-bstatus="0OBSERVED">دائري</option>
+                <option value="conic" data--h-bstatus="0OBSERVED">مخروطي</option>
+              </select>
+            </div>
+          </div>
+          <div id="multiGradientPreview" class="multi-color-gradient mb-1 relative" style="background: linear-gradient(to right, rgb(59, 130, 246) 0%, rgb(139, 92, 246) 100%);" data--h-bstatus="0OBSERVED">
+            <div class="gradient-slider" data--h-bstatus="0OBSERVED"></div>
+            <!-- Gradient stops will be added here -->
+          <div class="gradient-stop" data-index="0" style="left: 0%; background-color: rgb(59, 130, 246);" data--h-bstatus="0OBSERVED"></div><div class="gradient-stop" data-index="1" style="left: 100%; background-color: rgb(139, 92, 246);" data--h-bstatus="0OBSERVED"></div></div>
+        </div>
+        
+        <div id="gradientColorStops" class="space-y-4 mb-6" data--h-bstatus="0OBSERVED"><div class="flex items-center space-x-4 space-x-reverse" data--h-bstatus="0OBSERVED">
+            <div class="w-10" data--h-bstatus="0OBSERVED">
+              <input type="color" value="#3B82F6" data-index="0" class="gradient-stop-color" data--h-bstatus="0OBSERVED">
+            </div>
+            <div class="flex-1" data--h-bstatus="0OBSERVED">
+              <input type="range" min="0" max="100" value="0" data-index="0" class="gradient-stop-position w-full" data--h-bstatus="0OBSERVED">
+            </div>
+            <div class="w-16" data--h-bstatus="0OBSERVED">
+              <input type="text" value="#3B82F6" data-index="0" class="gradient-stop-color-text w-full p-1 text-sm border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+            </div>
+            <div class="w-12" data--h-bstatus="0OBSERVED">
+              <input type="number" min="0" max="100" value="0" data-index="0" class="gradient-stop-position-text w-full p-1 text-sm border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+            </div>
+            
+          </div><div class="flex items-center space-x-4 space-x-reverse" data--h-bstatus="0OBSERVED">
+            <div class="w-10" data--h-bstatus="0OBSERVED">
+              <input type="color" value="#8B5CF6" data-index="1" class="gradient-stop-color" data--h-bstatus="0OBSERVED">
+            </div>
+            <div class="flex-1" data--h-bstatus="0OBSERVED">
+              <input type="range" min="0" max="100" value="100" data-index="1" class="gradient-stop-position w-full" data--h-bstatus="0OBSERVED">
+            </div>
+            <div class="w-16" data--h-bstatus="0OBSERVED">
+              <input type="text" value="#8B5CF6" data-index="1" class="gradient-stop-color-text w-full p-1 text-sm border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+            </div>
+            <div class="w-12" data--h-bstatus="0OBSERVED">
+              <input type="number" min="0" max="100" value="100" data-index="1" class="gradient-stop-position-text w-full p-1 text-sm border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+            </div>
+            
+          </div></div>
+        
+        <div class="mb-6" data--h-bstatus="0OBSERVED">
+          <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">اتجاه التدرج</label>
+          <select id="gradientDirection" class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+            <option value="to right" data--h-bstatus="0OBSERVED">أفقي (يمين)</option>
+            <option value="to left" data--h-bstatus="0OBSERVED">أفقي (يسار)</option>
+            <option value="to bottom" data--h-bstatus="0OBSERVED">رأسي (للأسفل)</option>
+            <option value="to top" data--h-bstatus="0OBSERVED">رأسي (للأعلى)</option>
+            <option value="to bottom right" data--h-bstatus="0OBSERVED">مائل (يمين أسفل)</option>
+            <option value="to bottom left" data--h-bstatus="0OBSERVED">مائل (يسار أسفل)</option>
+            <option value="to top right" data--h-bstatus="0OBSERVED">مائل (يمين أعلى)</option>
+            <option value="to top left" data--h-bstatus="0OBSERVED">مائل (يسار أعلى)</option>
+            <option value="circle at center" data--h-bstatus="0OBSERVED">دائري (وسط)</option>
+            <option value="circle at top left" data--h-bstatus="0OBSERVED">دائري (أعلى اليسار)</option>
+            <option value="circle at top right" data--h-bstatus="0OBSERVED">دائري (أعلى اليمين)</option>
+            <option value="circle at bottom left" data--h-bstatus="0OBSERVED">دائري (أسفل اليسار)</option>
+            <option value="circle at bottom right" data--h-bstatus="0OBSERVED">دائري (أسفل اليمين)</option>
+          </select>
+        </div>
+        
+        <div class="mb-6" data--h-bstatus="0OBSERVED">
+          <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">كود CSS</label>
+          <div class="relative" data--h-bstatus="0OBSERVED">
+            <textarea id="gradientCSS" readonly="" class="w-full h-24 p-3 border rounded font-mono text-sm dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED"></textarea>
+            <button id="copyGradientCSS" class="absolute top-2 left-2 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded" data--h-bstatus="0OBSERVED">
+              <i class="fas fa-copy" data--h-bstatus="0OBSERVED"></i>
+            </button>
+          </div>
+        </div>
+        
+        <button id="saveGradient" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg w-full" data--h-bstatus="0OBSERVED">
+          حفظ في المفضلة
+        </button>
+      </div>
+      
+      <div data--h-bstatus="0OBSERVED">
+        <h3 class="text-xl font-bold mb-4" data--h-bstatus="0OBSERVED">تدرجات مقترحة</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" data--h-bstatus="0OBSERVED">
+          <div data--h-bstatus="0OBSERVED">
+            <h4 class="text-lg font-medium mb-2" data--h-bstatus="0OBSERVED">نوع التدرج</h4>
+            <div class="flex flex-wrap gap-2 mb-4" data--h-bstatus="0OBSERVED">
+              <button class="gradient-category-btn bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-lg active" data-category="popular" data--h-bstatus="0OBSERVED">رائج</button>
+              <button class="gradient-category-btn bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-lg" data-category="colorful" data--h-bstatus="0OBSERVED">متعدد الألوان</button>
+              <button class="gradient-category-btn bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-lg" data-category="pastel" data--h-bstatus="0OBSERVED">باستيل</button>
+              <button class="gradient-category-btn bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-lg" data-category="neon" data--h-bstatus="0OBSERVED">نيون</button>
+              <button class="gradient-category-btn bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-lg" data-category="sunset" data--h-bstatus="0OBSERVED">غروب</button>
+              <button class="gradient-category-btn bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-lg" data-category="cosmic" data--h-bstatus="0OBSERVED">كوني</button>
+            </div>
+          </div>
+          <div data--h-bstatus="0OBSERVED">
+            <h4 class="text-lg font-medium mb-2" data--h-bstatus="0OBSERVED">نمط التدرج</h4>
+            <div class="flex flex-wrap gap-2" data--h-bstatus="0OBSERVED">
+              <button class="gradient-type-btn bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-lg active" data-type="linear" data--h-bstatus="0OBSERVED">خطي</button>
+              <button class="gradient-type-btn bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-lg" data-type="radial" data--h-bstatus="0OBSERVED">دائري</button>
+              <button class="gradient-type-btn bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded-lg" data-type="conic" data--h-bstatus="0OBSERVED">مخروطي</button>
+            </div>
+          </div>
+        </div>
+        <div id="suggestedGradients" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" data--h-bstatus="0OBSERVED"><div class="gradient-item" data--h-bstatus="0OBSERVED">
+            <div class="gradient-preview" style="background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59)" data--h-bstatus="0OBSERVED"></div>
+            <div class="gradient-actions" data--h-bstatus="0OBSERVED">
+              <button class="use-gradient bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-gray-800 shadow" data--h-bstatus="0OBSERVED">
+                استخدام
+              </button>
+              <button class="save-gradient bg-green-500 bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-white shadow" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div><div class="gradient-item" data--h-bstatus="0OBSERVED">
+            <div class="gradient-preview" style="background: linear-gradient(to right, #8E2DE2, #4A00E0)" data--h-bstatus="0OBSERVED"></div>
+            <div class="gradient-actions" data--h-bstatus="0OBSERVED">
+              <button class="use-gradient bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-gray-800 shadow" data--h-bstatus="0OBSERVED">
+                استخدام
+              </button>
+              <button class="save-gradient bg-green-500 bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-white shadow" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div><div class="gradient-item" data--h-bstatus="0OBSERVED">
+            <div class="gradient-preview" style="background: linear-gradient(to right, #FF416C, #FF4B2B)" data--h-bstatus="0OBSERVED"></div>
+            <div class="gradient-actions" data--h-bstatus="0OBSERVED">
+              <button class="use-gradient bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-gray-800 shadow" data--h-bstatus="0OBSERVED">
+                استخدام
+              </button>
+              <button class="save-gradient bg-green-500 bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-white shadow" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div><div class="gradient-item" data--h-bstatus="0OBSERVED">
+            <div class="gradient-preview" style="background: linear-gradient(to right, #4facfe, #00f2fe)" data--h-bstatus="0OBSERVED"></div>
+            <div class="gradient-actions" data--h-bstatus="0OBSERVED">
+              <button class="use-gradient bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-gray-800 shadow" data--h-bstatus="0OBSERVED">
+                استخدام
+              </button>
+              <button class="save-gradient bg-green-500 bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-white shadow" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div><div class="gradient-item" data--h-bstatus="0OBSERVED">
+            <div class="gradient-preview" style="background: linear-gradient(to right, #0ba360, #3cba92)" data--h-bstatus="0OBSERVED"></div>
+            <div class="gradient-actions" data--h-bstatus="0OBSERVED">
+              <button class="use-gradient bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-gray-800 shadow" data--h-bstatus="0OBSERVED">
+                استخدام
+              </button>
+              <button class="save-gradient bg-green-500 bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-white shadow" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div><div class="gradient-item" data--h-bstatus="0OBSERVED">
+            <div class="gradient-preview" style="background: linear-gradient(to right, #3494E6, #EC6EAD)" data--h-bstatus="0OBSERVED"></div>
+            <div class="gradient-actions" data--h-bstatus="0OBSERVED">
+              <button class="use-gradient bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-gray-800 shadow" data--h-bstatus="0OBSERVED">
+                استخدام
+              </button>
+              <button class="save-gradient bg-green-500 bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-white shadow" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div><div class="gradient-item" data--h-bstatus="0OBSERVED">
+            <div class="gradient-preview" style="background: linear-gradient(to right, #FC5C7D, #6A82FB)" data--h-bstatus="0OBSERVED"></div>
+            <div class="gradient-actions" data--h-bstatus="0OBSERVED">
+              <button class="use-gradient bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-gray-800 shadow" data--h-bstatus="0OBSERVED">
+                استخدام
+              </button>
+              <button class="save-gradient bg-green-500 bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-white shadow" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div><div class="gradient-item" data--h-bstatus="0OBSERVED">
+            <div class="gradient-preview" style="background: linear-gradient(to right, #c471f5, #fa71cd)" data--h-bstatus="0OBSERVED"></div>
+            <div class="gradient-actions" data--h-bstatus="0OBSERVED">
+              <button class="use-gradient bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-gray-800 shadow" data--h-bstatus="0OBSERVED">
+                استخدام
+              </button>
+              <button class="save-gradient bg-green-500 bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-white shadow" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div><div class="gradient-item" data--h-bstatus="0OBSERVED">
+            <div class="gradient-preview" style="background: linear-gradient(to right, #00b09b, #96c93d)" data--h-bstatus="0OBSERVED"></div>
+            <div class="gradient-actions" data--h-bstatus="0OBSERVED">
+              <button class="use-gradient bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-gray-800 shadow" data--h-bstatus="0OBSERVED">
+                استخدام
+              </button>
+              <button class="save-gradient bg-green-500 bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-white shadow" data--h-bstatus="0OBSERVED">
+                حفظ
+              </button>
+            </div>
+          </div></div>
+      </div>
+    </section>
+
+    <!-- Contrast Checker -->
+    <section id="contrast" class="tab-content hidden" data--h-bstatus="0OBSERVED">
+      <h2 class="text-2xl font-bold mb-6" data--h-bstatus="0OBSERVED">فاحص تباين الألوان</h2>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data--h-bstatus="0OBSERVED">
+        <div id="contrastPreview" class="contrast-box mb-6" style="background-color: #FFFFFF;" data--h-bstatus="0OBSERVED">
+          <span style="color: #000000; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">نموذج نص</span>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6" data--h-bstatus="0OBSERVED">
+          <div data--h-bstatus="0OBSERVED">
+            <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">لون الخلفية</label>
+            <div class="flex items-center" data--h-bstatus="0OBSERVED">
+              <input type="color" id="bgColor" value="#FFFFFF" class="ml-2" data--h-bstatus="0OBSERVED">
+              <input type="text" id="bgColorText" value="#FFFFFF" class="flex-1 p-2 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+            </div>
+          </div>
+          
+          <div data--h-bstatus="0OBSERVED">
+            <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">لون النص</label>
+            <div class="flex items-center" data--h-bstatus="0OBSERVED">
+              <input type="color" id="textColor" value="#000000" class="ml-2" data--h-bstatus="0OBSERVED">
+              <input type="text" id="textColorText" value="#000000" class="flex-1 p-2 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-6" data--h-bstatus="0OBSERVED">
+          <h3 class="text-lg font-semibold mb-2" data--h-bstatus="0OBSERVED">نتيجة التباين</h3>
+          <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">نسبة التباين:</span>
+              <span id="contrastRatio" class="font-bold" data--h-bstatus="0OBSERVED">21.00:1</span>
+            </div>
+            
+            <div class="mb-2" data--h-bstatus="0OBSERVED">
+              <h4 class="font-semibold mb-1" data--h-bstatus="0OBSERVED">نص صغير (أقل من 18pt)</h4>
+              <div class="flex flex-wrap gap-2" data--h-bstatus="0OBSERVED">
+                <span id="wcagAA" class="badge badge-success" data--h-bstatus="0OBSERVED">WCAG AA: ناجح</span>
+                <span id="wcagAAA" class="badge badge-success" data--h-bstatus="0OBSERVED">WCAG AAA: ناجح</span>
+              </div>
+            </div>
+            
+            <div data--h-bstatus="0OBSERVED">
+              <h4 class="font-semibold mb-1" data--h-bstatus="0OBSERVED">نص كبير (18pt أو أكبر)</h4>
+              <div class="flex flex-wrap gap-2" data--h-bstatus="0OBSERVED">
+                <span id="wcagAALarge" class="badge badge-success" data--h-bstatus="0OBSERVED">WCAG AA: ناجح</span>
+                <span id="wcagAAALarge" class="badge badge-success" data--h-bstatus="0OBSERVED">WCAG AAA: ناجح</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-4" data--h-bstatus="0OBSERVED">
+          <h3 class="text-lg font-semibold mb-2" data--h-bstatus="0OBSERVED">معايير WCAG للتباين</h3>
+          <ul class="list-disc list-inside space-y-2 text-sm" data--h-bstatus="0OBSERVED">
+            <li data--h-bstatus="0OBSERVED"><strong data--h-bstatus="0OBSERVED">WCAG AA (النص العادي):</strong> نسبة تباين على الأقل 4.5:1</li>
+            <li data--h-bstatus="0OBSERVED"><strong data--h-bstatus="0OBSERVED">WCAG AAA (النص العادي):</strong> نسبة تباين على الأقل 7:1</li>
+            <li data--h-bstatus="0OBSERVED"><strong data--h-bstatus="0OBSERVED">WCAG AA (النص الكبير):</strong> نسبة تباين على الأقل 3:1</li>
+            <li data--h-bstatus="0OBSERVED"><strong data--h-bstatus="0OBSERVED">WCAG AAA (النص الكبير):</strong> نسبة تباين على الأقل 4.5:1</li>
+          </ul>
+        </div>
+        
+        <button id="saveContrastPair" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg w-full" data--h-bstatus="0OBSERVED">
+          حفظ زوج الألوان في المفضلة
+        </button>
+      </div>
+      
+      <div class="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data--h-bstatus="0OBSERVED">
+        <h3 class="text-lg font-semibold mb-4" data--h-bstatus="0OBSERVED">ألوان متباينة مقترحة</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="suggestedContrastPairs" data--h-bstatus="0OBSERVED"><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #FFFFFF;" data--h-bstatus="0OBSERVED">
+            <span style="color: #000000; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">أبيض / أسود</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">21.00:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #000000;" data--h-bstatus="0OBSERVED">
+            <span style="color: #FFFFFF; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">أسود / أبيض</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">21.00:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #0A3871;" data--h-bstatus="0OBSERVED">
+            <span style="color: #FFFFFF; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">أزرق داكن / أبيض</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">11.56:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #1A4B8C;" data--h-bstatus="0OBSERVED">
+            <span style="color: #FFFFFF; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">أزرق كلاسيكي / أبيض</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">8.65:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #FFFFFF;" data--h-bstatus="0OBSERVED">
+            <span style="color: #1A4B8C; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">أبيض / أزرق كلاسيكي</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">8.65:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #EFEFEF;" data--h-bstatus="0OBSERVED">
+            <span style="color: #333333; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">رمادي فاتح / رمادي داكن</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">10.99:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #333333;" data--h-bstatus="0OBSERVED">
+            <span style="color: #EFEFEF; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">رمادي داكن / رمادي فاتح</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">10.99:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #2D3748;" data--h-bstatus="0OBSERVED">
+            <span style="color: #F7FAFC; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">رمادي أزرق / أبيض فاتح</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">11.44:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #553C9A;" data--h-bstatus="0OBSERVED">
+            <span style="color: #FFFFFF; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">بنفسجي / أبيض</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">8.40:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #F0FFF4;" data--h-bstatus="0OBSERVED">
+            <span style="color: #276749; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">أخضر فاتح / أخضر داكن</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">6.51:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #FFFAF0;" data--h-bstatus="0OBSERVED">
+            <span style="color: #744210; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">أصفر فاتح / بني</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">7.98:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div><div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data--h-bstatus="0OBSERVED">
+          <div class="contrast-box" style="background-color: #742A2A;" data--h-bstatus="0OBSERVED">
+            <span style="color: #FEB2B2; font-size: 1.5rem; font-weight: bold;" data--h-bstatus="0OBSERVED">Aa</span>
+          </div>
+          <div class="p-3" data--h-bstatus="0OBSERVED">
+            <div class="flex justify-between items-center mb-2" data--h-bstatus="0OBSERVED">
+              <span data--h-bstatus="0OBSERVED">أحمر داكن / وردي فاتح</span>
+              <span class="font-bold" data--h-bstatus="0OBSERVED">5.80:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm" data--h-bstatus="0OBSERVED">
+              استخدام
+            </button>
+          </div>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- Color Converter -->
+    <section id="converter" class="tab-content hidden" data--h-bstatus="0OBSERVED">
+      <h2 class="text-2xl font-bold mb-6" data--h-bstatus="0OBSERVED">محول نظام الألوان</h2>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data--h-bstatus="0OBSERVED">
+        <div id="converterPreview" class="w-full h-24 rounded-lg mb-6" style="background-color: rgb(59, 130, 246);" data--h-bstatus="0OBSERVED"></div>
+        
+        <div class="grid grid-cols-1 gap-6 mb-6" data--h-bstatus="0OBSERVED">
+          <div data--h-bstatus="0OBSERVED">
+            <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">اختر لون</label>
+            <div class="flex items-center" data--h-bstatus="0OBSERVED">
+              <input type="color" id="converterColor" value="#3B82F6" class="ml-2" data--h-bstatus="0OBSERVED">
+              <select id="converterType" class="p-2 border rounded dark:bg-gray-700 dark:border-gray-600 ml-2" data--h-bstatus="0OBSERVED">
+                <option value="hex" data--h-bstatus="0OBSERVED">HEX</option>
+                <option value="rgb" data--h-bstatus="0OBSERVED">RGB</option>
+                <option value="hsl" data--h-bstatus="0OBSERVED">HSL</option>
+                <option value="hsv" data--h-bstatus="0OBSERVED">HSV</option>
+                <option value="cmyk" data--h-bstatus="0OBSERVED">CMYK</option>
+              </select>
+              <input type="text" id="converterInput" value="#3B82F6" class="flex-1 p-2 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6" data--h-bstatus="0OBSERVED">
+          <div data--h-bstatus="0OBSERVED">
+            <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">HEX</label>
+            <div class="relative" data--h-bstatus="0OBSERVED">
+              <input type="text" id="hexOutput" value="#3B82F6" readonly="" class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+              <button class="copy-btn absolute top-1 left-1 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" data-clipboard-target="#hexOutput" data--h-bstatus="0OBSERVED">
+                <i class="fas fa-copy" data--h-bstatus="0OBSERVED"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div data--h-bstatus="0OBSERVED">
+            <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">RGB</label>
+            <div class="relative" data--h-bstatus="0OBSERVED">
+              <input type="text" id="rgbOutput" value="rgb(59, 130, 246)" readonly="" class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+              <button class="copy-btn absolute top-1 left-1 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" data-clipboard-target="#rgbOutput" data--h-bstatus="0OBSERVED">
+                <i class="fas fa-copy" data--h-bstatus="0OBSERVED"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div data--h-bstatus="0OBSERVED">
+            <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">HSL</label>
+            <div class="relative" data--h-bstatus="0OBSERVED">
+              <input type="text" id="hslOutput" value="hsl(217, 91%, 60%)" readonly="" class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+              <button class="copy-btn absolute top-1 left-1 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" data-clipboard-target="#hslOutput" data--h-bstatus="0OBSERVED">
+                <i class="fas fa-copy" data--h-bstatus="0OBSERVED"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div data--h-bstatus="0OBSERVED">
+            <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">HSV</label>
+            <div class="relative" data--h-bstatus="0OBSERVED">
+              <input type="text" id="hsvOutput" value="hsv(217, 76%, 96%)" readonly="" class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+              <button class="copy-btn absolute top-1 left-1 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" data-clipboard-target="#hsvOutput" data--h-bstatus="0OBSERVED">
+                <i class="fas fa-copy" data--h-bstatus="0OBSERVED"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div data--h-bstatus="0OBSERVED">
+            <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">CMYK</label>
+            <div class="relative" data--h-bstatus="0OBSERVED">
+              <input type="text" id="cmykOutput" value="cmyk(76%, 47%, 0%, 4%)" readonly="" class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+              <button class="copy-btn absolute top-1 left-1 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" data-clipboard-target="#cmykOutput" data--h-bstatus="0OBSERVED">
+                <i class="fas fa-copy" data--h-bstatus="0OBSERVED"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div data--h-bstatus="0OBSERVED">
+            <label class="block mb-2 font-semibold" data--h-bstatus="0OBSERVED">CSS Variable</label>
+            <div class="relative" data--h-bstatus="0OBSERVED">
+              <input type="text" id="cssVarOutput" value="--primary-color: #3B82F6;" readonly="" class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600" data--h-bstatus="0OBSERVED">
+              <button class="copy-btn absolute top-1 left-1 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" data-clipboard-target="#cssVarOutput" data--h-bstatus="0OBSERVED">
+                <i class="fas fa-copy" data--h-bstatus="0OBSERVED"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-6" data--h-bstatus="0OBSERVED">
+          <h3 class="text-lg font-semibold mb-2" data--h-bstatus="0OBSERVED">ألوان متناسقة</h3>
+          <div class="grid grid-cols-5 gap-2" id="harmoniesContainer" data--h-bstatus="0OBSERVED"><div class="flex flex-col items-center" data--h-bstatus="0OBSERVED">
+          <div class="color-swatch w-full h-12 mb-1" style="background-color: #3b82f6" data-color="#3b82f6" data--h-bstatus="0OBSERVED"></div>
+          <span class="text-xs" data--h-bstatus="0OBSERVED">أصلي</span>
+        </div><div class="flex flex-col items-center" data--h-bstatus="0OBSERVED">
+          <div class="color-swatch w-full h-12 mb-1" style="background-color: #f6af3c" data-color="#f6af3c" data--h-bstatus="0OBSERVED"></div>
+          <span class="text-xs" data--h-bstatus="0OBSERVED">متمم</span>
+        </div><div class="flex flex-col items-center" data--h-bstatus="0OBSERVED">
+          <div class="color-swatch w-full h-12 mb-1" style="background-color: #f63c83" data-color="#f63c83" data--h-bstatus="0OBSERVED"></div>
+          <span class="text-xs" data--h-bstatus="0OBSERVED">ثلاثي</span>
+        </div><div class="flex flex-col items-center" data--h-bstatus="0OBSERVED">
+          <div class="color-swatch w-full h-12 mb-1" style="background-color: #83f63c" data-color="#83f63c" data--h-bstatus="0OBSERVED"></div>
+          <span class="text-xs" data--h-bstatus="0OBSERVED">ثلاثي 2</span>
+        </div><div class="flex flex-col items-center" data--h-bstatus="0OBSERVED">
+          <div class="color-swatch w-full h-12 mb-1" style="background-color: #f6523c" data-color="#f6523c" data--h-bstatus="0OBSERVED"></div>
+          <span class="text-xs" data--h-bstatus="0OBSERVED">انقسامي</span>
+        </div></div>
+        </div>
+        
+        <button id="saveConverterColor" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg w-full" data--h-bstatus="0OBSERVED">
+          حفظ اللون في المفضلة
+        </button>
+      </div>
+    </section>
+
+    <!-- Favorites -->
+    <section id="favorites" class="tab-content hidden" data--h-bstatus="0OBSERVED">
+      <h2 class="text-2xl font-bold mb-6" data--h-bstatus="0OBSERVED">الألوان المفضلة</h2>
+      
+      <div id="emptyFavorites" class="text-center py-12 bg-white dark:bg-gray-800 rounded-lg shadow-lg" data--h-bstatus="0OBSERVED">
+        <div class="text-gray-500 dark:text-gray-400 text-6xl mb-4" data--h-bstatus="0OBSERVED">
+          <i class="far fa-heart" data--h-bstatus="0OBSERVED"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2" data--h-bstatus="0OBSERVED">لا توجد ألوان محفوظة</h3>
+        <p class="text-gray-500 dark:text-gray-400" data--h-bstatus="0OBSERVED">قم بحفظ الألوان والتدرجات المفضلة لديك من الأدوات المختلفة</p>
+      </div>
+      
+      <div id="favoritesContainer" class="hidden" data--h-bstatus="0OBSERVED">
+        <div class="mb-8" data--h-bstatus="0OBSERVED">
+          <h3 class="text-xl font-bold mb-4" data--h-bstatus="0OBSERVED">الألوان الفردية</h3>
+          <div id="favoriteColors" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4" data--h-bstatus="0OBSERVED">
+            <!-- Favorite colors will be loaded here -->
+          </div>
+        </div>
+        
+        <div class="mb-8" data--h-bstatus="0OBSERVED">
+          <h3 class="text-xl font-bold mb-4" data--h-bstatus="0OBSERVED">مجموعات الألوان المحفوظة</h3>
+          <div id="favoritePalettes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data--h-bstatus="0OBSERVED">
+            <!-- Favorite palettes will be loaded here -->
+          </div>
+        </div>
+        
+        <div class="mb-8" data--h-bstatus="0OBSERVED">
+          <h3 class="text-xl font-bold mb-4" data--h-bstatus="0OBSERVED">التدرجات المحفوظة</h3>
+          <div id="favoriteGradients" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" data--h-bstatus="0OBSERVED">
+            <!-- Favorite gradients will be loaded here -->
+          </div>
+        </div>
+        
+        <div data--h-bstatus="0OBSERVED">
+          <h3 class="text-xl font-bold mb-4" data--h-bstatus="0OBSERVED">أزواج تباين الألوان</h3>
+          <div id="favoriteContrastPairs" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" data--h-bstatus="0OBSERVED">
+            <!-- Favorite contrast pairs will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white dark:bg-gray-800 shadow-inner mt-12 py-6" data--h-bstatus="0OBSERVED">
+    <div class="container mx-auto px-4 text-center" data--h-bstatus="0OBSERVED">
+      <p class="text-gray-600 dark:text-gray-400" data--h-bstatus="0OBSERVED">© 2023 ColorMate - مكتبة ألوان ويب ذكية</p>
+      <p class="text-sm text-gray-500 dark:text-gray-500 mt-2" data--h-bstatus="0OBSERVED">تم تطويره لمساعدة المطورين والمصممين في اختيار ألوان متناسقة لمشاريعهم</p>
+    </div>
+  </footer>
+
+  <script data--h-bstatus="0OBSERVED">
+    // Initialize tabs
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check and apply dark mode
+      if (localStorage.getItem('darkMode') === 'enabled' || 
+          (localStorage.getItem('darkMode') === null && 
+           window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+      
+      // Load data
+      initColorPalettes();
+      initGradients();
+      initContrast();
+      initConverter();
+      loadFavorites();
+      
+      // Setup tab switching
+      const tabLinks = document.querySelectorAll('.tab');
+      tabLinks.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = tab.getAttribute('data-tab');
+          
+          // Update active tab
+          tabLinks.forEach(t => t.classList.remove('active', 'text-blue-600', 'dark:text-blue-500'));
+          tabLinks.forEach(t => t.classList.add('text-gray-600', 'dark:text-gray-400'));
+          tab.classList.add('active', 'text-blue-600', 'dark:text-blue-500');
+          tab.classList.remove('text-gray-600', 'dark:text-gray-400');
+          
+          // Show corresponding content
+          document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+          });
+          document.getElementById(target).classList.remove('hidden');
+        });
+      });
+      
+      // Dark mode toggle
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      darkModeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        if (document.documentElement.classList.contains('dark')) {
+          localStorage.setItem('darkMode', 'enabled');
+        } else {
+          localStorage.setItem('darkMode', 'disabled');
+        }
+      });
+    });
+
+    // Show copy notification
+    function showCopyNotification() {
+      const notification = document.querySelector('.copied-alert');
+      notification.style.opacity = '1';
+      setTimeout(() => {
+        notification.style.opacity = '0';
+      }, 2000);
+    }
+
+    // Copy text to clipboard
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showCopyNotification();
+      });
+    }
+
+    // Setup copy buttons
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('copy-btn') || e.target.closest('.copy-btn')) {
+        const btn = e.target.classList.contains('copy-btn') ? e.target : e.target.closest('.copy-btn');
+        const targetId = btn.getAttribute('data-clipboard-target');
+        const targetElement = document.querySelector(targetId);
+        copyToClipboard(targetElement.value);
+      }
+    });
+
+    // Color Palettes
+    function initColorPalettes() {
+      const palettes = {
+        modern: [
+          {name: 'أزرق فاتح', colors: ['#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE', '#DBEAFE']},
+          {name: 'أخضر هادئ', colors: ['#10B981', '#34D399', '#6EE7B7', '#A7F3D0', '#D1FAE5']},
+          {name: 'بنفسجي عصري', colors: ['#8B5CF6', '#A78BFA', '#C4B5FD', '#DDD6FE', '#EDE9FE']},
+          {name: 'برتقالي دافئ', colors: ['#F59E0B', '#FBBF24', '#FCD34D', '#FDE68A', '#FEF3C7']},
+          {name: 'وردي ناعم', colors: ['#EC4899', '#F472B6', '#F9A8D4', '#FBCFE8', '#FCE7F3']},
+          {name: 'رمادي متدرج', colors: ['#1F2937', '#374151', '#4B5563', '#6B7280', '#9CA3AF']}
+        ],
+        pastel: [
+          {name: 'ألوان باستيل 1', colors: ['#FFC8DD', '#FFAFCC', '#BDE0FE', '#A2D2FF', '#CDB4DB']},
+          {name: 'ألوان باستيل 2', colors: ['#FFF1E6', '#F8EDEB', '#E8E8E4', '#D8E2DC', '#ECE4DB']},
+          {name: 'ألوان باستيل 3', colors: ['#FADDE1', '#FFC4D6', '#FEA5B9', '#F8C3B4', '#F8EDDF']},
+          {name: 'ألوان باستيل 4', colors: ['#E0FBFC', '#C2DFE3', '#9DB4C0', '#5C6B73', '#253237']},
+          {name: 'ألوان باستيل 5', colors: ['#F1FAEE', '#A8DADC', '#457B9D', '#1D3557', '#E63946']},
+          {name: 'ألوان باستيل 6', colors: ['#FFCDB2', '#FFB4A2', '#E5989B', '#B5838D', '#6D6875']}
+        ],
+        neon: [
+          {name: 'نيون حيوي', colors: ['#F0FF42', '#82CD47', '#54B435', '#379237', '#1E5128']},
+          {name: 'نيون وردي', colors: ['#D800A6', '#EA00C8', '#F941E9', '#FD7AFF', '#FDA8FF']},
+          {name: 'نيون أزرق', colors: ['#18F2B2', '#29DFFF', '#21B1FF', '#1187FF', '#5A5EFF']},
+          {name: 'نيون متعدد', colors: ['#FF2600', '#FF0047', '#DC00FF', '#00B3FF', '#00FF7C']},
+          {name: 'نيون مشرق', colors: ['#FF0075', '#FF4D00', '#FFFA00', '#00F0FF', '#0066FF']}
+        ],
+        vintage: [
+          {name: 'فينتاج 1', colors: ['#E8C39E', '#D4A373', '#9C6644', '#7F5539', '#432818']},
+          {name: 'فينتاج 2', colors: ['#CCD5AE', '#E9EDC9', '#FEFAE0', '#FAEDCD', '#D4A373']},
+          {name: 'فينتاج 3', colors: ['#606C38', '#283618', '#FEFAE0', '#DDA15E', '#BC6C25']},
+          {name: 'فينتاج 4', colors: ['#797D62', '#9B9B7A', '#BAA587', '#D9AE94', '#F1DCA7']},
+          {name: 'فينتاج 5', colors: ['#4A5859', '#639A88', '#AFCFC0', '#F1EDCA', '#FADE89']}
+        ],
+        nature: [
+          {name: 'غابة', colors: ['#1B4332', '#2D6A4F', '#40916C', '#52B788', '#95D5B2']},
+          {name: 'شاطئ', colors: ['#053C5E', '#1D3461', '#1A5E63', '#519E8A', '#7BE0AD']},
+          {name: 'غروب', colors: ['#F8961E', '#F9844A', '#F9C74F', '#43AA8B', '#277DA1']},
+          {name: 'صحراء', colors: ['#CB997E', '#DDBEA9', '#FFE8D6', '#B7B7A4', '#A5A58D']},
+          {name: 'جبال', colors: ['#006D77', '#83C5BE', '#EDF6F9', '#FFDDD2', '#E29578']}
+        ],
+        flat: [
+          {name: 'ألوان مسطحة 1', colors: ['#1ABC9C', '#2ECC71', '#3498DB', '#9B59B6', '#34495E']},
+          {name: 'ألوان مسطحة 2', colors: ['#16A085', '#27AE60', '#2980B9', '#8E44AD', '#2C3E50']},
+          {name: 'ألوان مسطحة 3', colors: ['#F1C40F', '#E67E22', '#E74C3C', '#ECF0F1', '#95A5A6']},
+          {name: 'ألوان مسطحة 4', colors: ['#F39C12', '#D35400', '#C0392B', '#BDC3C7', '#7F8C8D']}
+        ],
+        material: [
+          {name: 'أحمر ماتريال', colors: ['#F44336', '#EF5350', '#E57373', '#EF9A9A', '#FFCDD2']},
+          {name: 'أزرق ماتريال', colors: ['#2196F3', '#42A5F5', '#64B5F6', '#90CAF9', '#BBDEFB']},
+          {name: 'أخضر ماتريال', colors: ['#4CAF50', '#66BB6A', '#81C784', '#A5D6A7', '#C8E6C9']},
+          {name: 'برتقالي ماتريال', colors: ['#FF9800', '#FFA726', '#FFB74D', '#FFCC80', '#FFE0B2']},
+          {name: 'بنفسجي ماتريال', colors: ['#9C27B0', '#AB47BC', '#BA68C8', '#CE93D8', '#E1BEE7']}
+        ]
+      };
+
+      // Initialize with modern palettes
+      renderPalettes(palettes.modern);
+
+      // Add event listeners to palette type buttons
+      document.querySelectorAll('.palette-type').forEach(button => {
+        button.addEventListener('click', () => {
+          // Update active button
+          document.querySelectorAll('.palette-type').forEach(btn => {
+            btn.classList.remove('bg-blue-500');
+            btn.classList.add('bg-gray-500');
+          });
+          button.classList.remove('bg-gray-500');
+          button.classList.add('bg-blue-500');
+          
+          // Render selected palettes
+          const type = button.getAttribute('data-type');
+          renderPalettes(palettes[type]);
+        });
+      });
+    }
+
+    function renderPalettes(palettes) {
+      const container = document.getElementById('palettesContainer');
+      container.innerHTML = '';
+      
+      palettes.forEach(palette => {
+        const card = document.createElement('div');
+        card.className = 'color-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden';
+        
+        let colorsHTML = '';
+        palette.colors.forEach(color => {
+          colorsHTML += `
+            <div class="relative" style="flex: 1; min-height: 80px;">
+              <div class="absolute inset-0" style="background-color: ${color}"></div>
+              <div class="absolute bottom-0 right-0 m-2">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="${color}">
+                  ${color}
+                </button>
+              </div>
+            </div>
+          `;
+        });
+        
+        card.innerHTML = `
+          <div class="flex flex-col h-full">
+            <div class="flex" style="height: 80px;">
+              ${colorsHTML}
+            </div>
+            <div class="p-4 flex justify-between items-center">
+              <h3 class="font-semibold">${palette.name}</h3>
+              <button class="save-palette bg-green-500 hover:bg-green-600 text-white text-sm py-1 px-3 rounded-lg" data-palette='${JSON.stringify(palette)}'>
+                حفظ
+              </button>
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(card);
+      });
+      
+      // Add click event for copying colors
+      document.querySelectorAll('.copy-color').forEach(button => {
+        button.addEventListener('click', () => {
+          const color = button.getAttribute('data-color');
+          copyToClipboard(color);
+        });
+      });
+      
+      // Add click event for saving palettes
+      document.querySelectorAll('.save-palette').forEach(button => {
+        button.addEventListener('click', () => {
+          const paletteData = JSON.parse(button.getAttribute('data-palette'));
+          saveFavoritePalette(paletteData);
+        });
+      });
+    }
+
+    // Gradients
+    function initGradients() {
+      // Gradient categories
+      const gradients = {
+        popular: [
+          {colors: ['#12c2e9', '#c471ed', '#f64f59'], type: 'linear', direction: 'to right'},
+          {colors: ['#8E2DE2', '#4A00E0'], type: 'linear', direction: 'to right'},
+          {colors: ['#FF416C', '#FF4B2B'], type: 'linear', direction: 'to right'},
+          {colors: ['#4facfe', '#00f2fe'], type: 'linear', direction: 'to right'},
+          {colors: ['#0ba360', '#3cba92'], type: 'linear', direction: 'to right'},
+          {colors: ['#3494E6', '#EC6EAD'], type: 'linear', direction: 'to right'},
+          {colors: ['#FC5C7D', '#6A82FB'], type: 'linear', direction: 'to right'},
+          {colors: ['#c471f5', '#fa71cd'], type: 'linear', direction: 'to right'},
+          {colors: ['#00b09b', '#96c93d'], type: 'linear', direction: 'to right'}
+        ],
+        colorful: [
+          {colors: ['#00F260', '#0575E6', '#00F260'], type: 'linear', direction: 'to right'},
+          {colors: ['#FC466B', '#3F5EFB', '#FC466B'], type: 'linear', direction: 'to right'},
+          {colors: ['#1FA2FF', '#12D8FA', '#A6FFCB'], type: 'linear', direction: 'to right'},
+          {colors: ['#FF0099', '#493240', '#FF0099'], type: 'linear', direction: 'to right'},
+          {colors: ['#8EC5FC', '#E0C3FC', '#8EC5FC'], type: 'linear', direction: 'to right'},
+          {colors: ['#667eea', '#764ba2', '#667eea'], type: 'linear', direction: 'to right'}
+        ],
+        pastel: [
+          {colors: ['#ffecd2', '#fcb69f'], type: 'linear', direction: 'to right'},
+          {colors: ['#FFDEE9', '#B5FFFC'], type: 'linear', direction: 'to right'},
+          {colors: ['#FBDA61', '#FF5ACD'], type: 'linear', direction: 'to right'},
+          {colors: ['#ff9a9e', '#fad0c4'], type: 'linear', direction: 'to right'},
+          {colors: ['#a1c4fd', '#c2e9fb'], type: 'linear', direction: 'to right'},
+          {colors: ['#d4fc79', '#96e6a1'], type: 'linear', direction: 'to right'}
+        ],
+        neon: [
+          {colors: ['#FA8BFF', '#2BD2FF', '#2BFF88'], type: 'linear', direction: 'to right'},
+          {colors: ['#08AEEA', '#2AF598'], type: 'linear', direction: 'to right'},
+          {colors: ['#FEE140', '#FA709A'], type: 'linear', direction: 'to right'},
+          {colors: ['#00F5A0', '#00D9F5'], type: 'linear', direction: 'to right'},
+          {colors: ['#00DBDE', '#FC00FF'], type: 'linear', direction: 'to right'},
+          {colors: ['#0093E9', '#80D0C7'], type: 'linear', direction: 'to right'}
+        ],
+        sunset: [
+          {colors: ['#F56565', '#ED8936', '#ECC94B'], type: 'linear', direction: 'to right'},
+          {colors: ['#FE5858', '#EE9617'], type: 'linear', direction: 'to right'},
+          {colors: ['#f43b47', '#453a94'], type: 'linear', direction: 'to right'},
+          {colors: ['#f12711', '#f5af19'], type: 'linear', direction: 'to right'},
+          {colors: ['#FF057C', '#8D0B93', '#321575'], type: 'linear', direction: 'to right'},
+          {colors: ['#ff6e7f', '#bfe9ff'], type: 'linear', direction: 'to right'}
+        ],
+        cosmic: [
+          {colors: ['#6D6027', '#D3CBB8'], type: 'linear', direction: 'to right'},
+          {colors: ['#603813', '#b29f94'], type: 'linear', direction: 'to right'},
+          {colors: ['#16222A', '#3A6073'], type: 'linear', direction: 'to right'},
+          {colors: ['#0f0c29', '#302b63', '#24243e'], type: 'linear', direction: 'to right'},
+          {colors: ['#23074d', '#cc5333'], type: 'linear', direction: 'to right'},
+          {colors: ['#200122', '#6f0000'], type: 'linear', direction: 'to right'}
+        ]
+      };
+      
+      // Radial gradients
+      const radialGradients = {
+        popular: [
+          {colors: ['#12c2e9', '#c471ed', '#f64f59'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#8E2DE2', '#4A00E0'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#FF416C', '#FF4B2B'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#4facfe', '#00f2fe'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#0ba360', '#3cba92'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#3494E6', '#EC6EAD'], type: 'radial', direction: 'circle at center'}
+        ],
+        colorful: [
+          {colors: ['#00F260', '#0575E6', '#00F260'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#FC466B', '#3F5EFB', '#FC466B'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#1FA2FF', '#12D8FA', '#A6FFCB'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#FF0099', '#493240', '#FF0099'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#8EC5FC', '#E0C3FC', '#8EC5FC'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#667eea', '#764ba2', '#667eea'], type: 'radial', direction: 'circle at center'}
+        ],
+        pastel: [
+          {colors: ['#ffecd2', '#fcb69f'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#FFDEE9', '#B5FFFC'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#FBDA61', '#FF5ACD'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#ff9a9e', '#fad0c4'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#a1c4fd', '#c2e9fb'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#d4fc79', '#96e6a1'], type: 'radial', direction: 'circle at center'}
+        ],
+        neon: [
+          {colors: ['#FA8BFF', '#2BD2FF', '#2BFF88'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#08AEEA', '#2AF598'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#FEE140', '#FA709A'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#00F5A0', '#00D9F5'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#00DBDE', '#FC00FF'], type: 'radial', direction: 'circle at center'},
+          {colors: ['#0093E9', '#80D0C7'], type: 'radial', direction: 'circle at center'}
+        ]
+      };
+      
+      // Conic gradients
+      const conicGradients = {
+        popular: [
+          {colors: ['#12c2e9', '#c471ed', '#f64f59', '#12c2e9'], type: 'conic', direction: 'from 0deg at center'},
+          {colors: ['#8E2DE2', '#4A00E0', '#8E2DE2'], type: 'conic', direction: 'from 0deg at center'},
+          {colors: ['#FF416C', '#FF4B2B', '#FF416C'], type: 'conic', direction: 'from 0deg at center'},
+          {colors: ['#4facfe', '#00f2fe', '#4facfe'], type: 'conic', direction: 'from 0deg at center'},
+          {colors: ['#0ba360', '#3cba92', '#0ba360'], type: 'conic', direction: 'from 0deg at center'},
+          {colors: ['#3494E6', '#EC6EAD', '#3494E6'], type: 'conic', direction: 'from 0deg at center'}
+        ],
+        colorful: [
+          {colors: ['#00F260', '#0575E6', '#FF416C', '#00F260'], type: 'conic', direction: 'from 0deg at center'},
+          {colors: ['#FC466B', '#3F5EFB', '#FC466B'], type: 'conic', direction: 'from 0deg at center'},
+          {colors: ['#1FA2FF', '#12D8FA', '#A6FFCB', '#1FA2FF'], type: 'conic', direction: 'from 0deg at center'},
+          {colors: ['#FF0099', '#493240', '#00DBDE', '#FF0099'], type: 'conic', direction: 'from 0deg at center'}
+        ]
+      };
+      
+      // Initialize with 2 color stops for gradient generator
+      let gradientStops = [
+        { color: '#3B82F6', position: 0 },
+        { color: '#8B5CF6', position: 100 }
+      ];
+      
+      // Render initial gradient stops
+      renderGradientStops();
+      updateMultiColorGradient();
+      
+      // Add gradient stop button
+      document.getElementById('addGradientColor').addEventListener('click', function() {
+        // Add a color stop at position between last two stops
+        const newPosition = gradientStops.length >= 2 ? 
+          Math.floor((gradientStops[gradientStops.length - 2].position + gradientStops[gradientStops.length - 1].position) / 2) : 
+          50;
+          
+        const newColor = getRandomColor();
+        gradientStops.splice(gradientStops.length - 1, 0, {
+          color: newColor,
+          position: newPosition
+        });
+        
+        renderGradientStops();
+        updateMultiColorGradient();
+      });
+      
+      // Change gradient type
+      document.getElementById('gradientType').addEventListener('change', function() {
+        updateMultiColorGradient();
+      });
+      
+      // Change gradient direction
+      document.getElementById('gradientDirection').addEventListener('change', function() {
+        updateMultiColorGradient();
+      });
+      
+      // Copy gradient CSS
+      document.getElementById('copyGradientCSS').addEventListener('click', function() {
+        copyToClipboard(document.getElementById('gradientCSS').value);
+      });
+      
+      // Save gradient to favorites
+      document.getElementById('saveGradient').addEventListener('click', function() {
+        const type = document.getElementById('gradientType').value;
+        const direction = document.getElementById('gradientDirection').value;
+        const colors = gradientStops.map(stop => stop.color);
+        
+        saveFavoriteGradient({
+          colors: colors,
+          type: type,
+          direction: direction
+        });
+      });
+      
+      // Show suggested gradients (default: popular linear gradients)
+      renderSuggestedGradients(gradients.popular);
+      
+      // Gradient category buttons
+      document.querySelectorAll('.gradient-category-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          // Update active button
+          document.querySelectorAll('.gradient-category-btn').forEach(btn => {
+            btn.classList.remove('bg-blue-500');
+            btn.classList.add('bg-gray-500');
+          });
+          button.classList.remove('bg-gray-500');
+          button.classList.add('bg-blue-500');
+          
+          // Get selected category and type
+          const category = button.getAttribute('data-category');
+          const type = document.querySelector('.gradient-type-btn.active').getAttribute('data-type');
+          
+          // Show gradients based on selected category and type
+          if (type === 'linear') {
+            renderSuggestedGradients(gradients[category]);
+          } else if (type === 'radial') {
+            renderSuggestedGradients(radialGradients[category] || radialGradients.popular);
+          } else if (type === 'conic') {
+            renderSuggestedGradients(conicGradients[category] || conicGradients.popular);
+          }
+        });
+      });
+      
+      // Gradient type buttons
+      document.querySelectorAll('.gradient-type-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          // Update active button
+          document.querySelectorAll('.gradient-type-btn').forEach(btn => {
+            btn.classList.remove('bg-blue-500', 'active');
+            btn.classList.add('bg-gray-500');
+          });
+          button.classList.remove('bg-gray-500');
+          button.classList.add('bg-blue-500', 'active');
+          
+          // Get selected category and type
+          const category = document.querySelector('.gradient-category-btn.active').getAttribute('data-category');
+          const type = button.getAttribute('data-type');
+          
+          // Show gradients based on selected category and type
+          if (type === 'linear') {
+            renderSuggestedGradients(gradients[category]);
+          } else if (type === 'radial') {
+            renderSuggestedGradients(radialGradients[category] || radialGradients.popular);
+          } else if (type === 'conic') {
+            renderSuggestedGradients(conicGradients[category] || conicGradients.popular);
+          }
+        });
+      });
+      
+      // Function to render gradient stops UI
+      function renderGradientStops() {
+        const container = document.getElementById('gradientColorStops');
+        container.innerHTML = '';
+        
+        // Sort gradient stops by position
+        gradientStops.sort((a, b) => a.position - b.position);
+        
+        // Render slider stops
+        const preview = document.getElementById('multiGradientPreview');
+        const stopElements = preview.querySelectorAll('.gradient-stop');
+        stopElements.forEach(el => el.remove());
+        
+        gradientStops.forEach((stop, index) => {
+          // Create stop element in slider
+          const stopEl = document.createElement('div');
+          stopEl.className = 'gradient-stop';
+          stopEl.style.left = `${stop.position}%`;
+          stopEl.style.backgroundColor = stop.color;
+          stopEl.setAttribute('data-index', index);
+          preview.appendChild(stopEl);
+          
+          // Create input row
+          const row = document.createElement('div');
+          row.className = 'flex items-center space-x-4 space-x-reverse';
+          row.innerHTML = `
+            <div class="w-10">
+              <input type="color" value="${stop.color}" data-index="${index}" class="gradient-stop-color">
+            </div>
+            <div class="flex-1">
+              <input type="range" min="0" max="100" value="${stop.position}" data-index="${index}" 
+                class="gradient-stop-position w-full">
+            </div>
+            <div class="w-16">
+              <input type="text" value="${stop.color}" data-index="${index}" 
+                class="gradient-stop-color-text w-full p-1 text-sm border rounded dark:bg-gray-700 dark:border-gray-600">
+            </div>
+            <div class="w-12">
+              <input type="number" min="0" max="100" value="${stop.position}" data-index="${index}" 
+                class="gradient-stop-position-text w-full p-1 text-sm border rounded dark:bg-gray-700 dark:border-gray-600">
+            </div>
+            ${index > 0 && index < gradientStops.length - 1 ? `
+              <button class="remove-gradient-stop text-red-500 hover:text-red-700" data-index="${index}">
+                <i class="fas fa-trash"></i>
+              </button>
+            ` : ''}
+          `;
+          container.appendChild(row);
+        });
+        
+        // Add event listeners for color inputs
+        document.querySelectorAll('.gradient-stop-color').forEach(input => {
+          input.addEventListener('input', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            gradientStops[index].color = this.value;
+            // Update color text input
+            document.querySelector(`.gradient-stop-color-text[data-index="${index}"]`).value = this.value;
+            // Update stop color
+            document.querySelector(`.gradient-stop[data-index="${index}"]`).style.backgroundColor = this.value;
+            
+            updateMultiColorGradient();
+          });
+        });
+        
+        // Add event listeners for position sliders
+        document.querySelectorAll('.gradient-stop-position').forEach(input => {
+          input.addEventListener('input', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            gradientStops[index].position = parseInt(this.value);
+            // Update position text input
+            document.querySelector(`.gradient-stop-position-text[data-index="${index}"]`).value = this.value;
+            // Update stop position
+            document.querySelector(`.gradient-stop[data-index="${index}"]`).style.left = `${this.value}%`;
+            
+            updateMultiColorGradient();
+          });
+        });
+        
+        // Add event listeners for color text inputs
+        document.querySelectorAll('.gradient-stop-color-text').forEach(input => {
+          input.addEventListener('input', function() {
+            if (isValidHex(this.value)) {
+              const index = parseInt(this.getAttribute('data-index'));
+              gradientStops[index].color = this.value;
+              // Update color input
+              document.querySelector(`.gradient-stop-color[data-index="${index}"]`).value = this.value;
+              // Update stop color
+              document.querySelector(`.gradient-stop[data-index="${index}"]`).style.backgroundColor = this.value;
+              
+              updateMultiColorGradient();
+            }
+          });
+        });
+        
+        // Add event listeners for position text inputs
+        document.querySelectorAll('.gradient-stop-position-text').forEach(input => {
+          input.addEventListener('input', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            const value = parseInt(this.value);
+            if (value >= 0 && value <= 100) {
+              gradientStops[index].position = value;
+              // Update position slider
+              document.querySelector(`.gradient-stop-position[data-index="${index}"]`).value = value;
+              // Update stop position
+              document.querySelector(`.gradient-stop[data-index="${index}"]`).style.left = `${value}%`;
+              
+              updateMultiColorGradient();
+            }
+          });
+        });
+        
+        // Add event listeners for remove buttons
+        document.querySelectorAll('.remove-gradient-stop').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            gradientStops.splice(index, 1);
+            renderGradientStops();
+            updateMultiColorGradient();
+          });
+        });
+        
+        // Make gradient stops draggable
+        document.querySelectorAll('.gradient-stop').forEach(stop => {
+          stop.addEventListener('mousedown', function(e) {
+            const stopEl = e.target;
+            const index = parseInt(stopEl.getAttribute('data-index'));
+            const slider = document.querySelector('.gradient-slider');
+            const sliderRect = slider.getBoundingClientRect();
+            const sliderWidth = sliderRect.width;
+            
+            function handleMouseMove(e) {
+              let position = ((e.clientX - sliderRect.left) / sliderWidth) * 100;
+              position = Math.max(0, Math.min(100, position));
+              
+              // Update position
+              gradientStops[index].position = Math.round(position);
+              stopEl.style.left = `${position}%`;
+              
+              // Update inputs
+              document.querySelector(`.gradient-stop-position[data-index="${index}"]`).value = Math.round(position);
+              document.querySelector(`.gradient-stop-position-text[data-index="${index}"]`).value = Math.round(position);
+              
+              updateMultiColorGradient();
+            }
+            
+            function handleMouseUp() {
+              document.removeEventListener('mousemove', handleMouseMove);
+              document.removeEventListener('mouseup', handleMouseUp);
+            }
+            
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+          });
+        });
+      }
+      
+      // Function to update multi-color gradient
+      function updateMultiColorGradient() {
+        const type = document.getElementById('gradientType').value;
+        const direction = document.getElementById('gradientDirection').value;
+        
+        // Sort gradient stops by position
+        gradientStops.sort((a, b) => a.position - b.position);
+        
+        // Create gradient string
+        let gradientString = '';
+        if (type === 'linear') {
+          gradientString = `linear-gradient(${direction}, ${gradientStops.map(stop => `${stop.color} ${stop.position}%`).join(', ')})`;
+        } else if (type === 'radial') {
+          gradientString = `radial-gradient(${direction}, ${gradientStops.map(stop => `${stop.color} ${stop.position}%`).join(', ')})`;
+        } else if (type === 'conic') {
+          gradientString = `conic-gradient(${direction}, ${gradientStops.map(stop => `${stop.color} ${stop.position}%`).join(', ')})`;
+        }
+        
+        // Update preview
+        document.getElementById('multiGradientPreview').style.background = gradientString;
+        
+        // Update CSS code
+        document.getElementById('gradientCSS').value = `background: ${gradientString};`;
+      }
+      
+      // Function to render suggested gradients
+      function renderSuggestedGradients(gradientList) {
+        const container = document.getElementById('suggestedGradients');
+        container.innerHTML = '';
+        
+        gradientList.forEach(gradient => {
+          let gradientCSS = '';
+          
+          if (gradient.type === 'linear') {
+            gradientCSS = `linear-gradient(${gradient.direction}, ${gradient.colors.join(', ')})`;
+          } else if (gradient.type === 'radial') {
+            gradientCSS = `radial-gradient(${gradient.direction}, ${gradient.colors.join(', ')})`;
+          } else if (gradient.type === 'conic') {
+            gradientCSS = `conic-gradient(${gradient.direction}, ${gradient.colors.join(', ')})`;
+          }
+          
+          const card = document.createElement('div');
+          card.className = 'gradient-item';
+          card.innerHTML = `
+            <div class="gradient-preview" style="background: ${gradientCSS}"></div>
+            <div class="gradient-actions">
+              <button class="use-gradient bg-white bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-gray-800 shadow">
+                استخدام
+              </button>
+              <button class="save-gradient bg-green-500 bg-opacity-80 hover:bg-opacity-100 rounded-md p-1 text-xs text-white shadow">
+                حفظ
+              </button>
+            </div>
+          `;
+          container.appendChild(card);
+          
+          // Use gradient button
+          card.querySelector('.use-gradient').addEventListener('click', () => {
+            // Clear current gradient stops
+            gradientStops = [];
+            
+            // Calculate positions for new stops
+            const numColors = gradient.colors.length;
+            gradient.colors.forEach((color, index) => {
+              const position = Math.round((index / (numColors - 1)) * 100);
+              gradientStops.push({
+                color: color,
+                position: position
+              });
+            });
+            
+            // Update UI
+            document.getElementById('gradientType').value = gradient.type;
+            document.getElementById('gradientDirection').value = gradient.direction;
+            renderGradientStops();
+            updateMultiColorGradient();
+          });
+          
+          // Save gradient button
+          card.querySelector('.save-gradient').addEventListener('click', () => {
+            saveFavoriteGradient({
+              colors: gradient.colors,
+              type: gradient.type,
+              direction: gradient.direction
+            });
+          });
+        });
+      }
+      
+      // Helper function to get random color
+      function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+    }
+
+    // Contrast Checker
+    function initContrast() {
+      updateContrastChecker();
+      
+      document.getElementById('bgColor').addEventListener('input', function() {
+        document.getElementById('bgColorText').value = this.value;
+        updateContrastChecker();
+      });
+      
+      document.getElementById('bgColorText').addEventListener('input', function() {
+        if (isValidColor(this.value)) {
+          document.getElementById('bgColor').value = this.value;
+          updateContrastChecker();
+        }
+      });
+      
+      document.getElementById('textColor').addEventListener('input', function() {
+        document.getElementById('textColorText').value = this.value;
+        updateContrastChecker();
+      });
+      
+      document.getElementById('textColorText').addEventListener('input', function() {
+        if (isValidColor(this.value)) {
+          document.getElementById('textColor').value = this.value;
+          updateContrastChecker();
+        }
+      });
+      
+      document.getElementById('saveContrastPair').addEventListener('click', function() {
+        const bgColor = document.getElementById('bgColor').value;
+        const textColor = document.getElementById('textColor').value;
+        const ratio = document.getElementById('contrastRatio').textContent;
+        
+        saveFavoriteContrastPair({
+          bgColor: bgColor,
+          textColor: textColor,
+          ratio: ratio
+        });
+      });
+      
+      // Add suggested contrast pairs
+      renderSuggestedContrastPairs();
+    }
+
+    function updateContrastChecker() {
+      const bgColor = document.getElementById('bgColor').value;
+      const textColor = document.getElementById('textColor').value;
+      
+      // Update preview
+      const preview = document.getElementById('contrastPreview');
+      preview.style.backgroundColor = bgColor;
+      preview.querySelector('span').style.color = textColor;
+      
+      // Calculate contrast ratio
+      const ratio = calculateContrastRatio(bgColor, textColor);
+      document.getElementById('contrastRatio').textContent = ratio.toFixed(2) + ':1';
+      
+      // Check WCAG compliance
+      const wcagAA = document.getElementById('wcagAA');
+      const wcagAAA = document.getElementById('wcagAAA');
+      const wcagAALarge = document.getElementById('wcagAALarge');
+      const wcagAAALarge = document.getElementById('wcagAAALarge');
+      
+      // Normal text
+      if (ratio >= 4.5) {
+        wcagAA.className = 'badge badge-success';
+        wcagAA.textContent = 'WCAG AA: ناجح';
+      } else {
+        wcagAA.className = 'badge badge-danger';
+        wcagAA.textContent = 'WCAG AA: فشل';
+      }
+      
+      if (ratio >= 7) {
+        wcagAAA.className = 'badge badge-success';
+        wcagAAA.textContent = 'WCAG AAA: ناجح';
+      } else {
+        wcagAAA.className = 'badge badge-danger';
+        wcagAAA.textContent = 'WCAG AAA: فشل';
+      }
+      
+      // Large text
+      if (ratio >= 3) {
+        wcagAALarge.className = 'badge badge-success';
+        wcagAALarge.textContent = 'WCAG AA: ناجح';
+      } else {
+        wcagAALarge.className = 'badge badge-danger';
+        wcagAALarge.textContent = 'WCAG AA: فشل';
+      }
+      
+      if (ratio >= 4.5) {
+        wcagAAALarge.className = 'badge badge-success';
+        wcagAAALarge.textContent = 'WCAG AAA: ناجح';
+      } else {
+        wcagAAALarge.className = 'badge badge-danger';
+        wcagAAALarge.textContent = 'WCAG AAA: فشل';
+      }
+    }
+
+    function renderSuggestedContrastPairs() {
+      const suggestedPairs = [
+        { bgColor: '#FFFFFF', textColor: '#000000', name: 'أبيض / أسود' },
+        { bgColor: '#000000', textColor: '#FFFFFF', name: 'أسود / أبيض' },
+        { bgColor: '#0A3871', textColor: '#FFFFFF', name: 'أزرق داكن / أبيض' },
+        { bgColor: '#1A4B8C', textColor: '#FFFFFF', name: 'أزرق كلاسيكي / أبيض' },
+        { bgColor: '#FFFFFF', textColor: '#1A4B8C', name: 'أبيض / أزرق كلاسيكي' },
+        { bgColor: '#EFEFEF', textColor: '#333333', name: 'رمادي فاتح / رمادي داكن' },
+        { bgColor: '#333333', textColor: '#EFEFEF', name: 'رمادي داكن / رمادي فاتح' },
+        { bgColor: '#2D3748', textColor: '#F7FAFC', name: 'رمادي أزرق / أبيض فاتح' },
+        { bgColor: '#553C9A', textColor: '#FFFFFF', name: 'بنفسجي / أبيض' },
+        { bgColor: '#F0FFF4', textColor: '#276749', name: 'أخضر فاتح / أخضر داكن' },
+        { bgColor: '#FFFAF0', textColor: '#744210', name: 'أصفر فاتح / بني' },
+        { bgColor: '#742A2A', textColor: '#FEB2B2', name: 'أحمر داكن / وردي فاتح' }
+      ];
+      
+      const container = document.getElementById('suggestedContrastPairs');
+      container.innerHTML = '';
+      
+      suggestedPairs.forEach(pair => {
+        const ratio = calculateContrastRatio(pair.bgColor, pair.textColor).toFixed(2);
+        const card = document.createElement('div');
+        card.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden';
+        card.innerHTML = `
+          <div class="contrast-box" style="background-color: ${pair.bgColor};">
+            <span style="color: ${pair.textColor}; font-size: 1.5rem; font-weight: bold;">Aa</span>
+          </div>
+          <div class="p-3">
+            <div class="flex justify-between items-center mb-2">
+              <span>${pair.name}</span>
+              <span class="font-bold">${ratio}:1</span>
+            </div>
+            <button class="use-contrast-pair bg-blue-500 hover:bg-blue-600 text-white w-full py-1 px-3 rounded-lg text-sm">
+              استخدام
+            </button>
+          </div>
+        `;
+        
+        container.appendChild(card);
+        
+        // Use contrast pair
+        card.querySelector('.use-contrast-pair').addEventListener('click', () => {
+          document.getElementById('bgColor').value = pair.bgColor;
+          document.getElementById('bgColorText').value = pair.bgColor;
+          document.getElementById('textColor').value = pair.textColor;
+          document.getElementById('textColorText').value = pair.textColor;
+          updateContrastChecker();
+        });
+      });
+    }
+
+    function calculateContrastRatio(color1, color2) {
+      const rgb1 = hexToRgb(color1);
+      const rgb2 = hexToRgb(color2);
+      
+      const l1 = calculateLuminance(rgb1);
+      const l2 = calculateLuminance(rgb2);
+      
+      const lighter = Math.max(l1, l2);
+      const darker = Math.min(l1, l2);
+      
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    function calculateLuminance(rgb) {
+      let r = rgb.r / 255;
+      let g = rgb.g / 255;
+      let b = rgb.b / 255;
+      
+      r = r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
+      g = g <= 0.03928 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
+      b = b <= 0.03928 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+      
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    }
+
+    // Color Converter
+    function initConverter() {
+      updateConverterOutputs();
+      
+      document.getElementById('converterColor').addEventListener('input', function() {
+        document.getElementById('converterInput').value = this.value;
+        document.getElementById('converterType').value = 'hex';
+        updateConverterOutputs();
+      });
+      
+      document.getElementById('converterInput').addEventListener('input', function() {
+        const type = document.getElementById('converterType').value;
+        if (type === 'hex' && isValidHex(this.value)) {
+          document.getElementById('converterColor').value = this.value;
+          updateConverterOutputs();
+        } else if (type === 'rgb' && isValidRGB(this.value)) {
+          const hex = rgbToHex(parseRGB(this.value));
+          document.getElementById('converterColor').value = hex;
+          updateConverterOutputs();
+        } else if (type === 'hsl' && isValidHSL(this.value)) {
+          const rgb = hslToRgb(parseHSL(this.value));
+          const hex = rgbToHex(rgb);
+          document.getElementById('converterColor').value = hex;
+          updateConverterOutputs();
+        } else if (type === 'hsv' && isValidHSV(this.value)) {
+          const rgb = hsvToRgb(parseHSV(this.value));
+          const hex = rgbToHex(rgb);
+          document.getElementById('converterColor').value = hex;
+          updateConverterOutputs();
+        } else if (type === 'cmyk' && isValidCMYK(this.value)) {
+          const rgb = cmykToRgb(parseCMYK(this.value));
+          const hex = rgbToHex(rgb);
+          document.getElementById('converterColor').value = hex;
+          updateConverterOutputs();
+        }
+      });
+      
+      document.getElementById('converterType').addEventListener('change', function() {
+        // When changing type, keep the current color but change the input format
+        const currentHex = document.getElementById('converterColor').value;
+        const type = this.value;
+        
+        if (type === 'hex') {
+          document.getElementById('converterInput').value = currentHex;
+        } else if (type === 'rgb') {
+          const rgb = hexToRgb(currentHex);
+          document.getElementById('converterInput').value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        } else if (type === 'hsl') {
+          const rgb = hexToRgb(currentHex);
+          const hsl = rgbToHsl(rgb);
+          document.getElementById('converterInput').value = `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`;
+        } else if (type === 'hsv') {
+          const rgb = hexToRgb(currentHex);
+          const hsv = rgbToHsv(rgb);
+          document.getElementById('converterInput').value = `hsv(${Math.round(hsv.h)}, ${Math.round(hsv.s)}%, ${Math.round(hsv.v)}%)`;
+        } else if (type === 'cmyk') {
+          const rgb = hexToRgb(currentHex);
+          const cmyk = rgbToCmyk(rgb);
+          document.getElementById('converterInput').value = `cmyk(${Math.round(cmyk.c)}%, ${Math.round(cmyk.m)}%, ${Math.round(cmyk.y)}%, ${Math.round(cmyk.k)}%)`;
+        }
+      });
+      
+      document.getElementById('saveConverterColor').addEventListener('click', function() {
+        const color = document.getElementById('converterColor').value;
+        saveFavoriteColor(color);
+      });
+    }
+
+    function updateConverterOutputs() {
+      const hex = document.getElementById('converterColor').value;
+      document.getElementById('converterPreview').style.backgroundColor = hex;
+      
+      const rgb = hexToRgb(hex);
+      const hsl = rgbToHsl(rgb);
+      const hsv = rgbToHsv(rgb);
+      const cmyk = rgbToCmyk(rgb);
+      
+      document.getElementById('hexOutput').value = hex;
+      document.getElementById('rgbOutput').value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+      document.getElementById('hslOutput').value = `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`;
+      document.getElementById('hsvOutput').value = `hsv(${Math.round(hsv.h)}, ${Math.round(hsv.s)}%, ${Math.round(hsv.v)}%)`;
+      document.getElementById('cmykOutput').value = `cmyk(${Math.round(cmyk.c)}%, ${Math.round(cmyk.m)}%, ${Math.round(cmyk.y)}%, ${Math.round(cmyk.k)}%)`;
+      document.getElementById('cssVarOutput').value = `--color: ${hex};`;
+      
+      // Show color harmonies
+      showColorHarmonies(hex);
+    }
+
+    function showColorHarmonies(hex) {
+      const harmonies = [
+        { name: 'أصلي', color: hex },
+        { name: 'متمم', color: getComplementaryColor(hex) },
+        { name: 'ثلاثي', color: getTriadicColor(hex, 1) },
+        { name: 'ثلاثي 2', color: getTriadicColor(hex, 2) },
+        { name: 'انقسامي', color: getSplitComplementaryColor(hex, 1) }
+      ];
+      
+      const container = document.getElementById('harmoniesContainer');
+      container.innerHTML = '';
+      
+      harmonies.forEach(harmony => {
+        const swatch = document.createElement('div');
+        swatch.className = 'flex flex-col items-center';
+        swatch.innerHTML = `
+          <div class="color-swatch w-full h-12 mb-1" style="background-color: ${harmony.color}" data-color="${harmony.color}"></div>
+          <span class="text-xs">${harmony.name}</span>
+        `;
+        
+        container.appendChild(swatch);
+        
+        // Add click event to copy color
+        swatch.querySelector('.color-swatch').addEventListener('click', function() {
+          const color = this.getAttribute('data-color');
+          copyToClipboard(color);
+        });
+      });
+    }
+
+    function getComplementaryColor(hex) {
+      const rgb = hexToRgb(hex);
+      const hsl = rgbToHsl(rgb);
+      
+      // Rotate hue by 180 degrees
+      hsl.h = (hsl.h + 180) % 360;
+      
+      const complementRgb = hslToRgb(hsl);
+      return rgbToHex(complementRgb);
+    }
+
+    function getTriadicColor(hex, index) {
+      const rgb = hexToRgb(hex);
+      const hsl = rgbToHsl(rgb);
+      
+      // Rotate hue by 120 or 240 degrees
+      hsl.h = (hsl.h + 120 * index) % 360;
+      
+      const triadicRgb = hslToRgb(hsl);
+      return rgbToHex(triadicRgb);
+    }
+
+    function getSplitComplementaryColor(hex, index) {
+      const rgb = hexToRgb(hex);
+      const hsl = rgbToHsl(rgb);
+      
+      // Rotate hue by 150 or 210 degrees
+      const offset = index === 1 ? 150 : 210;
+      hsl.h = (hsl.h + offset) % 360;
+      
+      const splitRgb = hslToRgb(hsl);
+      return rgbToHex(splitRgb);
+    }
+
+    // Helper functions
+    function hexToRgb(hex) {
+      hex = hex.replace(/^#/, '');
+      
+      if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+      }
+      
+      const r = parseInt(hex.substr(0, 2), 16);
+      const g = parseInt(hex.substr(2, 2), 16);
+      const b = parseInt(hex.substr(4, 2), 16);
+      
+      return {r, g, b};
+    }
+
+    function rgbToHex(rgb) {
+      function toHex(c) {
+        const hex = c.toString(16);
+        return hex.length === 1 ? '0' + hex : hex;
+      }
+      
+      return '#' + toHex(rgb.r) + toHex(rgb.g) + toHex(rgb.b);
+    }
+
+    function rgbToHsl(rgb) {
+      const r = rgb.r / 255;
+      const g = rgb.g / 255;
+      const b = rgb.b / 255;
+      
+      const max = Math.max(r, g, b);
+      const min = Math.min(r, g, b);
+      let h, s, l = (max + min) / 2;
+      
+      if (max === min) {
+        h = s = 0; // achromatic
+      } else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        
+        h /= 6;
+      }
+      
+      return {
+        h: Math.round(h * 360),
+        s: Math.round(s * 100),
+        l: Math.round(l * 100)
+      };
+    }
+
+    function rgbToHsv(rgb) {
+      const r = rgb.r / 255;
+      const g = rgb.g / 255;
+      const b = rgb.b / 255;
+      
+      const max = Math.max(r, g, b);
+      const min = Math.min(r, g, b);
+      let h, s, v = max;
+      
+      const d = max - min;
+      s = max === 0 ? 0 : d / max;
+      
+      if (max === min) {
+        h = 0; // achromatic
+      } else {
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+      
+      return {
+        h: Math.round(h * 360),
+        s: Math.round(s * 100),
+        v: Math.round(v * 100)
+      };
+    }
+
+    function rgbToCmyk(rgb) {
+      let c = 1 - (rgb.r / 255);
+      let m = 1 - (rgb.g / 255);
+      let y = 1 - (rgb.b / 255);
+      
+      const k = Math.min(c, Math.min(m, y));
+      
+      if (k === 1) {
+        c = m = y = 0;
+      } else {
+        c = (c - k) / (1 - k);
+        m = (m - k) / (1 - k);
+        y = (y - k) / (1 - k);
+      }
+      
+      return {
+        c: Math.round(c * 100),
+        m: Math.round(m * 100),
+        y: Math.round(y * 100),
+        k: Math.round(k * 100)
+      };
+    }
+
+    function hslToRgb(hsl) {
+      const h = hsl.h / 360;
+      const s = hsl.s / 100;
+      const l = hsl.l / 100;
+      
+      let r, g, b;
+      
+      if (s === 0) {
+        r = g = b = l; // achromatic
+      } else {
+        const hue2rgb = (p, q, t) => {
+          if (t < 0) t += 1;
+          if (t > 1) t -= 1;
+          if (t < 1/6) return p + (q - p) * 6 * t;
+          if (t < 1/2) return q;
+          if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+          return p;
+        };
+        
+        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        const p = 2 * l - q;
+        
+        r = hue2rgb(p, q, h + 1/3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1/3);
+      }
+      
+      return {
+        r: Math.round(r * 255),
+        g: Math.round(g * 255),
+        b: Math.round(b * 255)
+      };
+    }
+
+    function hsvToRgb(hsv) {
+      const h = hsv.h / 360;
+      const s = hsv.s / 100;
+      const v = hsv.v / 100;
+      
+      let r, g, b;
+      
+      const i = Math.floor(h * 6);
+      const f = h * 6 - i;
+      const p = v * (1 - s);
+      const q = v * (1 - f * s);
+      const t = v * (1 - (1 - f) * s);
+      
+      switch (i % 6) {
+        case 0: r = v; g = t; b = p; break;
+        case 1: r = q; g = v; b = p; break;
+        case 2: r = p; g = v; b = t; break;
+        case 3: r = p; g = q; b = v; break;
+        case 4: r = t; g = p; b = v; break;
+        case 5: r = v; g = p; b = q; break;
+      }
+      
+      return {
+        r: Math.round(r * 255),
+        g: Math.round(g * 255),
+        b: Math.round(b * 255)
+      };
+    }
+
+    function cmykToRgb(cmyk) {
+      const c = cmyk.c / 100;
+      const m = cmyk.m / 100;
+      const y = cmyk.y / 100;
+      const k = cmyk.k / 100;
+      
+      const r = Math.round(255 * (1 - c) * (1 - k));
+      const g = Math.round(255 * (1 - m) * (1 - k));
+      const b = Math.round(255 * (1 - y) * (1 - k));
+      
+      return {r, g, b};
+    }
+
+    function parseRGB(rgbStr) {
+      const match = rgbStr.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
+      if (match) {
+        return {
+          r: parseInt(match[1]),
+          g: parseInt(match[2]),
+          b: parseInt(match[3])
+        };
+      }
+      return {r: 0, g: 0, b: 0};
+    }
+
+    function parseHSL(hslStr) {
+      const match = hslStr.match(/hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/i);
+      if (match) {
+        return {
+          h: parseInt(match[1]),
+          s: parseInt(match[2]),
+          l: parseInt(match[3])
+        };
+      }
+      return {h: 0, s: 0, l: 0};
+    }
+
+    function parseHSV(hsvStr) {
+      const match = hsvStr.match(/hsv\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/i);
+      if (match) {
+        return {
+          h: parseInt(match[1]),
+          s: parseInt(match[2]),
+          v: parseInt(match[3])
+        };
+      }
+      return {h: 0, s: 0, v: 0};
+    }
+
+    function parseCMYK(cmykStr) {
+      const match = cmykStr.match(/cmyk\(\s*(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/i);
+      if (match) {
+        return {
+          c: parseInt(match[1]),
+          m: parseInt(match[2]),
+          y: parseInt(match[3]),
+          k: parseInt(match[4])
+        };
+      }
+      return {c: 0, m: 0, y: 0, k: 0};
+    }
+
+    function isValidColor(color) {
+      if (isValidHex(color)) return true;
+      if (isValidRGB(color)) return true;
+      if (isValidHSL(color)) return true;
+      return false;
+    }
+
+    function isValidHex(hex) {
+      return /^#?([0-9A-F]{3}|[0-9A-F]{6})$/i.test(hex);
+    }
+
+    function isValidRGB(rgb) {
+      return /^rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)$/i.test(rgb);
+    }
+
+    function isValidHSL(hsl) {
+      return /^hsl\(\s*\d+\s*,\s*\d+%\s*,\s*\d+%\s*\)$/i.test(hsl);
+    }
+
+    function isValidHSV(hsv) {
+      return /^hsv\(\s*\d+\s*,\s*\d+%\s*,\s*\d+%\s*\)$/i.test(hsv);
+    }
+
+    function isValidCMYK(cmyk) {
+      return /^cmyk\(\s*\d+%\s*,\s*\d+%\s*,\s*\d+%\s*,\s*\d+%\s*\)$/i.test(cmyk);
+    }
+
+    // Favorites management
+    function loadFavorites() {
+      // Load favorites from localStorage
+      const favorites = {
+        colors: JSON.parse(localStorage.getItem('favoriteColors') || '[]'),
+        palettes: JSON.parse(localStorage.getItem('favoritePalettes') || '[]'),
+        gradients: JSON.parse(localStorage.getItem('favoriteGradients') || '[]'),
+        contrastPairs: JSON.parse(localStorage.getItem('favoriteContrastPairs') || '[]')
+      };
+      
+      if (favorites.colors.length === 0 && 
+          favorites.palettes.length === 0 && 
+          favorites.gradients.length === 0 && 
+          favorites.contrastPairs.length === 0) {
+        // Show empty state
+        document.getElementById('emptyFavorites').classList.remove('hidden');
+        document.getElementById('favoritesContainer').classList.add('hidden');
+        return;
+      }
+      
+      // Hide empty state and show favorites
+      document.getElementById('emptyFavorites').classList.add('hidden');
+      document.getElementById('favoritesContainer').classList.remove('hidden');
+      
+      // Render favorites
+      renderFavoriteColors(favorites.colors);
+      renderFavoritePalettes(favorites.palettes);
+      renderFavoriteGradients(favorites.gradients);
+      renderFavoriteContrastPairs(favorites.contrastPairs);
+    }
+
+    function saveFavoriteColor(color) {
+      let colors = JSON.parse(localStorage.getItem('favoriteColors') || '[]');
+      if (!colors.includes(color)) {
+        colors.push(color);
+        localStorage.setItem('favoriteColors', JSON.stringify(colors));
+        showCopyNotification();
+        loadFavorites();
+      }
+    }
+
+    function saveFavoritePalette(palette) {
+      let palettes = JSON.parse(localStorage.getItem('favoritePalettes') || '[]');
+      // Check if palette already exists
+      const exists = palettes.some(p => 
+        p.name === palette.name && 
+        JSON.stringify(p.colors) === JSON.stringify(palette.colors)
+      );
+      
+      if (!exists) {
+        palettes.push(palette);
+        localStorage.setItem('favoritePalettes', JSON.stringify(palettes));
+        showCopyNotification();
+        loadFavorites();
+      }
+    }
+
+    function saveFavoriteGradient(gradient) {
+      let gradients = JSON.parse(localStorage.getItem('favoriteGradients') || '[]');
+      // Check if gradient already exists
+      const exists = gradients.some(g => 
+        JSON.stringify(g.colors) === JSON.stringify(gradient.colors) && 
+        g.direction === gradient.direction &&
+        g.type === gradient.type
+      );
+      
+      if (!exists) {
+        gradients.push(gradient);
+        localStorage.setItem('favoriteGradients', JSON.stringify(gradients));
+        showCopyNotification();
+        loadFavorites();
+      }
+    }
+
+    function saveFavoriteContrastPair(pair) {
+      let pairs = JSON.parse(localStorage.getItem('favoriteContrastPairs') || '[]');
+      // Check if pair already exists
+      const exists = pairs.some(p => 
+        p.bgColor === pair.bgColor && 
+        p.textColor === pair.textColor
+      );
+      
+      if (!exists) {
+        pairs.push(pair);
+        localStorage.setItem('favoriteContrastPairs', JSON.stringify(pairs));
+        showCopyNotification();
+        loadFavorites();
+      }
+    }
+
+    function renderFavoriteColors(colors) {
+      const container = document.getElementById('favoriteColors');
+      container.innerHTML = '';
+      
+      if (colors.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 dark:text-gray-400 col-span-full">لا توجد ألوان محفوظة</p>';
+        return;
+      }
+      
+      colors.forEach(color => {
+        const colorCard = document.createElement('div');
+        colorCard.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden';
+        colorCard.innerHTML = `
+          <div class="color-swatch w-full h-20" style="background-color: ${color}"></div>
+          <div class="p-2 text-center">
+            <p class="text-sm font-mono">${color}</p>
+            <div class="flex justify-between mt-2">
+              <button class="copy-fav-color text-blue-500 hover:text-blue-700 text-sm" data-color="${color}">
+                <i class="fas fa-copy"></i>
+              </button>
+              <button class="remove-fav-color text-red-500 hover:text-red-700 text-sm" data-color="${color}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(colorCard);
+      });
+      
+      // Add event listeners
+      document.querySelectorAll('.copy-fav-color').forEach(button => {
+        button.addEventListener('click', () => {
+          const color = button.getAttribute('data-color');
+          copyToClipboard(color);
+        });
+      });
+      
+      document.querySelectorAll('.remove-fav-color').forEach(button => {
+        button.addEventListener('click', () => {
+          const color = button.getAttribute('data-color');
+          removeFavoriteColor(color);
+        });
+      });
+    }
+
+    function renderFavoritePalettes(palettes) {
+      const container = document.getElementById('favoritePalettes');
+      container.innerHTML = '';
+      
+      if (palettes.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 dark:text-gray-400 col-span-full">لا توجد مجموعات ألوان محفوظة</p>';
+        return;
+      }
+      
+      palettes.forEach((palette, index) => {
+        const card = document.createElement('div');
+        card.className = 'color-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden';
+        
+        let colorsHTML = '';
+        palette.colors.forEach(color => {
+          colorsHTML += `
+            <div class="relative" style="flex: 1; min-height: 80px;">
+              <div class="absolute inset-0" style="background-color: ${color}"></div>
+              <div class="absolute bottom-0 right-0 m-2">
+                <button class="copy-color bg-white bg-opacity-80 hover:bg-opacity-100 rounded p-1 text-xs text-gray-800 shadow" data-color="${color}">
+                  ${color}
+                </button>
+              </div>
+            </div>
+          `;
+        });
+        
+        card.innerHTML = `
+          <div class="flex flex-col h-full">
+            <div class="flex" style="height: 80px;">
+              ${colorsHTML}
+            </div>
+            <div class="p-4 flex justify-between items-center">
+              <h3 class="font-semibold">${palette.name}</h3>
+              <button class="remove-fav-palette text-red-500 hover:text-red-700" data-index="${index}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(card);
+      });
+      
+      // Add click event for copying colors
+      document.querySelectorAll('#favoritePalettes .copy-color').forEach(button => {
+        button.addEventListener('click', () => {
+          const color = button.getAttribute('data-color');
+          copyToClipboard(color);
+        });
+      });
+      
+      // Add click event for removing palettes
+      document.querySelectorAll('.remove-fav-palette').forEach(button => {
+        button.addEventListener('click', () => {
+          const index = parseInt(button.getAttribute('data-index'));
+          removeFavoritePalette(index);
+        });
+      });
+    }
+
+    function renderFavoriteGradients(gradients) {
+      const container = document.getElementById('favoriteGradients');
+      container.innerHTML = '';
+      
+      if (gradients.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 dark:text-gray-400 col-span-full">لا توجد تدرجات محفوظة</p>';
+        return;
+      }
+      
+      gradients.forEach((gradient, index) => {
+        let gradientCSS = '';
+        
+        if (gradient.type === 'linear') {
+          gradientCSS = `linear-gradient(${gradient.direction}, ${gradient.colors.join(', ')})`;
+        } else if (gradient.type === 'radial') {
+          gradientCSS = `radial-gradient(${gradient.direction}, ${gradient.colors.join(', ')})`;
+        } else if (gradient.type === 'conic') {
+          gradientCSS = `conic-gradient(${gradient.direction}, ${gradient.colors.join(', ')})`;
+        } else {
+          // Fallback for old data
+          gradientCSS = `linear-gradient(${gradient.direction}, ${gradient.colors.join(', ')})`;
+        }
+        
+        const card = document.createElement('div');
+        card.className = 'relative rounded-lg overflow-hidden shadow-md';
+        card.innerHTML = `
+          <div class="gradient-preview" style="background: ${gradientCSS}"></div>
+          <div class="bg-white dark:bg-gray-800 p-3 flex justify-between items-center">
+            <button class="copy-gradient-css text-blue-500 hover:text-blue-700" data-css="background: ${gradientCSS};">
+              <i class="fas fa-copy"></i> نسخ CSS
+            </button>
+            <button class="remove-fav-gradient text-red-500 hover:text-red-700" data-index="${index}">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      
+      // Add click events
+      document.querySelectorAll('.copy-gradient-css').forEach(button => {
+        button.addEventListener('click', () => {
+          const css = button.getAttribute('data-css');
+          copyToClipboard(css);
+        });
+      });
+      
+      document.querySelectorAll('.remove-fav-gradient').forEach(button => {
+        button.addEventListener('click', () => {
+          const index = parseInt(button.getAttribute('data-index'));
+          removeFavoriteGradient(index);
+        });
+      });
+    }
+
+    function renderFavoriteContrastPairs(pairs) {
+      const container = document.getElementById('favoriteContrastPairs');
+      container.innerHTML = '';
+      
+      if (pairs.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 dark:text-gray-400 col-span-full">لا توجد أزواج ألوان متباينة محفوظة</p>';
+        return;
+      }
+      
+      pairs.forEach((pair, index) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden';
+        card.innerHTML = `
+          <div class="contrast-box" style="background-color: ${pair.bgColor};">
+            <span style="color: ${pair.textColor}; font-size: 1.5rem; font-weight: bold;">Aa</span>
+          </div>
+          <div class="p-3">
+            <div class="flex justify-between items-center mb-2">
+              <span>نسبة التباين: ${pair.ratio}</span>
+              <button class="remove-fav-contrast text-red-500 hover:text-red-700" data-index="${index}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span>الخلفية: ${pair.bgColor}</span>
+              <span>النص: ${pair.textColor}</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      
+      // Add click event for removing contrast pairs
+      document.querySelectorAll('.remove-fav-contrast').forEach(button => {
+        button.addEventListener('click', () => {
+          const index = parseInt(button.getAttribute('data-index'));
+          removeFavoriteContrastPair(index);
+        });
+      });
+    }
+
+    function removeFavoriteColor(color) {
+      let colors = JSON.parse(localStorage.getItem('favoriteColors') || '[]');
+      colors = colors.filter(c => c !== color);
+      localStorage.setItem('favoriteColors', JSON.stringify(colors));
+      loadFavorites();
+    }
+
+    function removeFavoritePalette(index) {
+      let palettes = JSON.parse(localStorage.getItem('favoritePalettes') || '[]');
+      palettes.splice(index, 1);
+      localStorage.setItem('favoritePalettes', JSON.stringify(palettes));
+      loadFavorites();
+    }
+
+    function removeFavoriteGradient(index) {
+      let gradients = JSON.parse(localStorage.getItem('favoriteGradients') || '[]');
+      gradients.splice(index, 1);
+      localStorage.setItem('favoriteGradients', JSON.stringify(gradients));
+      loadFavorites();
+    }
+
+    function removeFavoriteContrastPair(index) {
+      let pairs = JSON.parse(localStorage.getItem('favoriteContrastPairs') || '[]');
+      pairs.splice(index, 1);
+      localStorage.setItem('favoriteContrastPairs', JSON.stringify(pairs));
+      loadFavorites();
+    }
+  </script>
+
+</body></html>
